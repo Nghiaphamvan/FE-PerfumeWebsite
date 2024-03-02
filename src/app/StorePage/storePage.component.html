@@ -1,0 +1,50 @@
+<div class="bar-list">
+
+</div>
+
+<div class="nav-sort">
+    <label id="example-radio-group-label" style="font-weight: bold; font-size: 16px;">Category</label>
+
+    <mat-radio-group
+        aria-labelledby="example-radio-group-label"
+        class="example-radio-group"
+        [(ngModel)]="favoriteSeason"
+    >
+        @for (season of seasons; track season) {
+            <mat-radio-button class="example-radio-button" [value]="season">{{season}}</mat-radio-button>
+        }
+    </mat-radio-group>
+
+    <label id="example-slide-group-label" style="font-weight: bold; font-size: 16px;">Price</label>
+    <mat-slider class="slider-price" min="0" max="10000000">
+        <input value="0" matSliderStartThumb>
+        <input value="10000000" matSliderEndThumb>
+    </mat-slider>
+      
+    <mat-form-field class="example-margin example-width">
+        <mat-label>Min Value</mat-label>
+        <input matInput type="number" [(ngModel)]="minValue">
+    </mat-form-field>
+
+    <mat-form-field class="example-margin example-width">
+        <mat-label>Max Value</mat-label>
+        <input matInput type="number" [(ngModel)]="maxValue">
+    </mat-form-field>
+
+</div>
+
+<div class="list-product">
+    <div class="typeList">
+        <div class="ChooseType">
+
+        </div>
+
+        <div class="StortType">
+
+        </div>
+    </div>
+</div>
+
+<div class="ListProduct">
+
+</div>

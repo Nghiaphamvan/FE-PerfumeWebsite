@@ -1,0 +1,30 @@
+.example-radio-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.nav-sort {
+    display: flex;
+    flex-direction: column;
+
+    mat-slider {
+        width: 200px;
+    }
+}
+
+/* Tùy chỉnh kích thước của thumb handles trong slider */
+.mat-slider-horizontal .mat-slider-thumb {
+    width: 16px; /* Đặt chiều rộng của thumb handle */
+    height: 16px; /* Đặt chiều cao của thumb handle */
+    margin-top: -7px; /* Đặt margin-top để căn chỉnh vị trí của thumb handle */
+}
+
+.mdc-slider__thumb-knob {
+    width: 12px;
+    height: 12px;
+}
+
+.mdc-slider__track--inactive {
+    width: 20px;
+}

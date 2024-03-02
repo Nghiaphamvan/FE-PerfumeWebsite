@@ -1,0 +1,73 @@
+<div class="titleListItemVirticle">
+  <p class="Text">{{Text}}</p>
+  <div class="horizontal-line" ></div>
+</div>
+
+<div class="slider-effectCover-flow">
+  <swiper
+    [effect]="'coverflow'"
+    [grabCursor]="true"
+    [slidesPerView]="'auto'"
+    [coverflowEffect]="{
+      rotate: 0,
+      stretch: 0,
+      depth: 0,
+      modifier: 1,
+      slideShadows: false
+    }"
+    [pagination]="true"
+    [navigation]="true"
+    class="mySwiper"
+  >
+    <ng-template swiperSlide
+      *ngFor="let image of Images;
+      let i = index;"
+
+    >
+      <div class="container"
+      (mouseenter)="onMouseEnter(i)"
+      (mouseleave)="onMouseLeave(i)"
+      >
+        <div class="container-Image-product" >
+          <img class="Image-product"
+          [class.Image-product-hover]="hoveredIndex === i"
+          [src]="image.imageSrc" alt="#">
+
+          <div
+          [class.cover-product-hover]="hoveredIndex === i"
+                class="cover-product">
+            <mat-icon>
+              <span class="material-symbols-outlined">
+                shopping_bag
+                </span>
+            </mat-icon>
+            <div class="verticle-line"></div>
+            <mat-icon>
+              <span class="material-symbols-outlined">
+                visibility
+                </span>
+            </mat-icon>
+          </div>
+        </div>
+
+        <div class="container-price">
+          <a href="#" class="name-product" style="text-decoration: none; color: rgb(27, 27, 27);" >
+            Jean Paul Gaultier Divine EDP
+          </a>
+  
+          <div class="price-product" style="display: flex; justify-content: space-around; align-items: center;">
+            <p class="price-product-new" style="display: block;">4.699.000</p>
+            <p class="price-product-old" style="display: block;">5.300.000</p>
+          </div>
+        </div>
+        <div class="discount">
+          <p>- 8%</p>
+        </div>
+      </div>
+    </ng-template>
+  </swiper>
+</div>
+
+<div class="titleListItemVirticle">
+  <a mat-stroked-button href="https://www.google.com/" target="_blank">See All</a>
+</div>

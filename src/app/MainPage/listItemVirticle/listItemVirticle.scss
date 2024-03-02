@@ -1,0 +1,153 @@
+@import 'swiper/scss';
+@import 'swiper/scss/navigation';
+@import 'swiper/scss/pagination';
+@import "swiper/scss/effect-coverflow";
+
+.slider-effectCover-flow {
+    width: 64%;
+    height: 330px;
+    margin: auto;
+    margin-bottom: 20px;
+
+    .container {    
+        display: flex;
+        flex-direction: column;
+        border: 1px solid #000;
+        width: 100%;
+        height: 95%;
+       
+        .container-Image-product {
+            position: relative;
+            margin: 0 auto;
+            display: block;
+            width: 70%;
+            height: 70%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .cover-product{ 
+                display: none;
+                //display: flex;
+                position: absolute;
+
+                width: 50%;
+                height: 20%;
+
+                justify-content: space-around;
+                align-items: center;
+
+                background-color: rgba(255, 255, 255,0.9);
+            }
+
+            .cover-product-hover {
+                display: flex;
+            }
+            
+            .Image-product{
+                position: absolute;
+                display: block;
+                width: 100%;
+                height: 100%;
+            }
+
+            .Image-product-hover {
+                opacity: 0.3;
+            }
+
+        }
+
+        .discount {
+            position: absolute;
+            margin-top: 10%;
+            width: 60px;
+            height: 30px;
+            background-color: #181818;
+            color: #fff;
+            display: flex;
+        }
+
+        .discount p {
+            margin: auto;
+            text-align: center;
+            font-size: 15px;
+        }
+
+        .container-price {
+            color: rgb(27, 27, 27);
+            font-size: 16px;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container-price .name-product {
+            width: 90%;
+            text-align: center;
+            margin: 0 auto;
+        }
+        .container-price .price-product {
+            width: 80%;
+            margin: auto;
+            padding-top: 10px;
+        }
+
+        .container-price .price-product .price-product-old{
+            text-decoration: line-through;
+            color: rgb(156, 163, 163);
+        }
+    }
+    
+    .swiper{
+        width: 100%;
+        margin-top: 20px;
+        height: 320px;
+    }
+
+    .swiper-wrapper {
+        height: 100%;
+    }
+
+    .swiper-slide {
+        background-position: center;
+        background-size: cover;
+        margin-left: 10px;
+        margin-right: 10px;
+        width: 224px;
+        height: 320px;
+    }
+
+    .swiper-button-next, .swiper-button-prev {
+        display: none;
+    }
+
+
+    .swiper-pagination-bullet {
+        display: none;
+    }
+
+    .swiper-button-next::after, .swiper-button-prev::after {
+        font-size: 15px;
+        font-weight: bold;
+    }
+}
+
+.titleListItemVirticle {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Căn giữa theo trục ngang */
+    justify-content: center;
+
+    .Text {
+        font-size: 24px;
+        font-weight: bold;
+        margin-top: 26px;
+        margin-bottom: 8px;
+    }
+
+    .horizontal-line{
+        width: 120px;
+        height: 1px;
+        background-color: black;
+    }
+}
