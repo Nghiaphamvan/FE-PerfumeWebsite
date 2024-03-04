@@ -29,14 +29,16 @@ import { StorePageComponent } from './StorePage/storePage.component';
 import { ItemProductComponent } from './Models/itemProduct/itemProduct.component';
 import { ItemAdminComponent } from './Models/itemAdmin/itemAdmin.component';
 import {MatRadioModule} from '@angular/material/radio';
-import {FormsModule} from '@angular/forms';
 import {MatSliderModule} from '@angular/material/slider';
-import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatCardModule} from '@angular/material/card';
+
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {JsonPipe} from '@angular/common';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 const MaterialComponents = [
   MatSlideToggleModule, MatButtonModule, MatIconModule, MatFormFieldModule, MatSelectModule, MatInputModule, MatChipsModule,
-  MatRadioModule, FormsModule, MatSliderModule, MatCheckboxModule, MatCardModule
+  MatRadioModule, FormsModule, MatSliderModule, MatCheckboxModule, MatCardModule, FormsModule, ReactiveFormsModule, MatCheckboxModule, JsonPipe,
 ];
 @NgModule({
   declarations: [
@@ -59,8 +61,7 @@ const MaterialComponents = [
     CarouselModule,
     PolicylModule,
     MaterialComponents,
-    HttpClientModule,
-    
+    HttpClientModule,    
   ],
   providers: [
     provideAnimationsAsync(),
