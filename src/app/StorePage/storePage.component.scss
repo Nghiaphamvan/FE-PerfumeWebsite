@@ -107,7 +107,57 @@
 
     .list-product {
         flex: 3.5;
-        background-color: rgb(214, 158, 158);
+
+        .container-product {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .typeList {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #ebebeb;
+
+            .SortType {
+                display: flex;
+
+                .container-sort-type-list {
+                    width: 150px;
+                    height: 30px;
+                }
+
+
+                mat-list mat-list-item {
+                    width: 150px;
+                    height: 30px;
+                    background-color: #fff;
+                    cursor: pointer;
+                }
+
+
+                mat-list mat-list-item:not(:first-child) {
+                    display: none;
+                }
+
+                mat-list:hover mat-list-item {
+                    display: flex;
+                    padding: 0px;
+                }
+
+                .sort-type-item-list {
+                    border: 1px solid #ebebeb;
+                    padding: 0px;
+                    margin-left: 8px;
+
+                    .sort-type-item-list-text {
+                        line-height: 30px;
+                        height: 30px;
+                        margin: 0 8px;
+                    }
+                }
+            }
+        }
     }
 }
 

@@ -24,6 +24,7 @@ export class StorePageComponent{
     typeSearch = '';
 
     trademarkSearch = '';
+    
     startValue: number = 0;
     endValue: number = 1000;
 
