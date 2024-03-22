@@ -1,23 +1,32 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 
 import {FormBuilder, FormGroup} from '@angular/forms';
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
     selector: 'store-page',
     templateUrl: './storePage.component.html',
     styleUrl: './storePage.component.scss',
 }) 
-export class StorePageComponent{
+export class StorePageComponent implements OnInit{
 
-    constructor(private _formBuilder: FormBuilder) {
+    typePage: string = "";
+
+    constructor(private _formBuilder: FormBuilder, private route: ActivatedRoute) {
         this.createTypeListGroup();
         this.createTradeMarkGroup();
     }
 
+    ngOnInit(): void {
+        this.route.params.subscribe(params => {
+          this.typePage = params['productType'];
+        });
+    }
+
     favoriteSeason: string = '';
     categoryList: string[] = ["MEN's PERFUME", "WOMEN's PERFUME", "MINI PERFUME", "NICHE PERFUME", "MAKE UP", "BODY CARE", "GIFT SET"];
-    typeList: string[] = ["giftset", "menperfume", "womenperfume", "unisexperfume", "unisex", "spraydeodorant"];
-    trademarklist: string[] = ["arianagrande", "carolinaherrera", "chanel", "creed", "giorgioarmani", "gucci", "hugoboss"];
+    typeList: string[] = ["Gift Set", "Men Perfume", "Women Perfume", "Unisex Perfume", "Unisex", "Spray Deodorant"];
+    trademarklist: string[] = ["Ariana Grande", "Carolina Herrera", "Chanel", "Creed", "Giorgio Armani", "Gucci", "Hugo Boss"];
 
     valueSearch = '';
 

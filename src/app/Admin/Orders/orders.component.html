@@ -1,0 +1,73 @@
+<div class="container-order">
+    <div class="search">
+        <input type="text" placeholder="Search ">
+        <span class="material-symbols-outlined">search</span>
+    </div>
+    
+    <div style="background-color: #fafafa; margin-top: 20px;">
+        <div class="name-page">
+            <p style="font-size: 24px; font-weight: 600;">Orders</p>
+            <div style="display: flex;">
+                <div class="date" style="display: flex; height: 44px; width: 160px; border: 1px solid #797b7b; margin-left: 20px; border-radius: 4px;
+                    justify-content: center;
+                    align-items: center;
+                ">
+                    <span class="material-symbols-outlined">
+                        calendar_month
+                    </span>
+                    <p style="margin: 0; font-size: 14px; font-weight: 500;">16 April, 2024</p>
+    
+                    <span class="material-symbols-outlined">
+                        expand_more
+                    </span>
+                </div>   
+            </div>
+        </div>
+    
+        <div class="container-list-product">
+            <div class="table-option">
+                <mat-chip-listbox aria-label="Fish selection">
+                    <mat-chip-option>All orders</mat-chip-option>
+                    <mat-chip-option>Completed</mat-chip-option>
+                    <mat-chip-option color="accent" selected>Panding</mat-chip-option>
+                    <mat-chip-option color="warn">Cancel</mat-chip-option>
+                  </mat-chip-listbox>
+            </div>
+            <div class="table-header">
+                <p style="margin-right: 16px;">#</p>
+                <p style="margin-right: 60px;">Order ID</p>
+                <p style="margin-right: 196px;">Product Name</p>
+                <p style="margin-right: 250px;">Address</p>
+                <p style="margin-right: 130px;">Date</p>
+                <p style="margin-right: 114px;">Price</p>
+                <p>Status</p>
+            </div>
+            <div class="table-list-product" >
+                <div style="display: flex; width: 100%; justify-content: space-between; align-items: center; margin-left: 20px; margin-right: 20px;">
+                    <p>1</p>
+                    <product-order-admin></product-order-admin>
+                </div>
+
+                <div style="display: flex; width: 100%; justify-content: space-between; align-items: center; margin-left: 20px; margin-right: 20px;">
+                    <p>1</p>
+                    <product-order-admin></product-order-admin>
+                </div>
+
+                <div style="display: flex; width: 100%; justify-content: space-between; align-items: center; margin-left: 20px; margin-right: 20px;">
+                    <p>1</p>
+                    <product-order-admin></product-order-admin>
+                </div>
+
+                <div style="display: flex; width: 100%; justify-content: space-between; align-items: center; margin-left: 20px; margin-right: 20px;">
+                    <p>1</p>
+                    <product-order-admin></product-order-admin>
+                </div>
+
+                <div style="display: flex; width: 100%; justify-content: space-between; align-items: center; margin-left: 20px; margin-right: 20px;">
+                    <p>1</p>
+                    <product-order-admin></product-order-admin>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

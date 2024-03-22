@@ -1,48 +1,42 @@
 <div class="Navbar ObjectInline">
-    <div class="Logo" >
+    <div routerLink="" class="Logo" >
         <img [src]="LogoPath" alt="#" style="width: 100%; height: 100%; object-fit: cover;">
     </div>
     
     <div class="nav ObjectInline">
         <div class="verticle-line " style="height: 100%; padding: 0; margin:  0;"></div>
-        <div class="Sale navItem">
+        <div [routerLink]= "['/store', 'sale']" class="Sale navItem">
             <p>Sale</p>
         </div>
 
-        
-
-        <div class="Perfume navItem">
+        <div [routerLink]= "['/store', 'perfume']" class="Perfume navItem">
             <p>Perfume</p>
         </div>
 
-        <div class="Brand navItem">
+
+        <div [routerLink]="['./store', 'brand']" class="Brand navItem">
             <p>Brand</p>
         </div>
 
-        <div class="Gift-set navItem">
+        <div [routerLink]= "['/store', 'giftset']" class="Gift-set navItem">
             <p>Gift set</p>
         </div>
 
-        <div class="Make-up navItem">
+        <div [routerLink]= "['/store', 'makeup']" class="Make-up navItem">
             <p>Make up</p>
         </div>
 
-        <div class="Skin-care navItem">
+        <div [routerLink]= "['/store', 'skincare']" class="Skin-care navItem">
             <p>Skin care</p>
         </div>
 
-        <div class="Body-care navItem">
+        <div [routerLink]= "['/store', 'bodycarer']" class="Body-care navItem">
             <p>Body care</p>
         </div>
-
-        <div class="verticle-line" style="height: 100%; padding: 0; margin:  0;"></div>
 
         <div class="Search navItem">
             <p>Search</p>
         </div>
-
-        <div class="verticle-line" style="height: 100%; padding: 0; margin:  0;"></div>
-
         <div class="Cart navItem">
             <p>Cart</p>
         </div>

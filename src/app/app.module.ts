@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
+import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule } from '@angular/router';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainPage } from './MainPage/main';
 import { listItemVirticle } from './MainPage/listItemVirticle/listItemVirticle.component';
-import { navBar } from './MainPage/navBar/navBar.component';
-import { HeadLineInfo } from './MainPage/HeadLineInfo/HeadlineInfo.Component';
+import { navBar } from './Header/navBar/navBar.component';
+import { HeadLineInfo } from './Header/HeadLineInfo/HeadlineInfo.Component';
 import { Attention } from './MainPage/Attention/Attention.component';
 import { SwiperModule } from 'swiper/angular';
 import { PolicylModule } from './MainPage/Attention/Policy/policy.module';
@@ -14,8 +16,6 @@ import { CarouselModule } from './MainPage/Carousel/Carousel.module';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatButtonModule } from '@angular/material/button';
-import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
-import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import {MatIconModule} from '@angular/material/icon';
 import { AdminComponent } from './Admin/Admin.component';
 import { AddNewProduct } from './Admin/addNewProduct/addNewProduct.component';
@@ -37,24 +37,45 @@ import {JsonPipe} from '@angular/common';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 
 import {MatListModule} from '@angular/material/list';
+import { CustomerAdminComponent } from './Admin/Customer/customer.component';
+import { DashboardAdminComponent } from './Admin/Dashboard/dashboard.component';
+import { MassageAdminComponent } from './Admin/Massage/massage.component';
+import { OrdersAdminComponent } from './Admin/Orders/orders.component';
+import { ProductsAdminComponent } from './Admin/Products/products.component';
+import {MatBadgeModule} from '@angular/material/badge';
+import { ProductOrderAdminComponent } from './Models/itemOrderAdmin/itemOrderAdmin.component';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 const MaterialComponents = [
   MatSlideToggleModule, MatButtonModule, MatIconModule, MatFormFieldModule, MatSelectModule, MatInputModule, MatChipsModule,
-  MatRadioModule, FormsModule, MatSliderModule, MatCheckboxModule, MatCardModule, FormsModule, ReactiveFormsModule, MatCheckboxModule, JsonPipe, MatListModule,
+  MatRadioModule, FormsModule, MatSliderModule, MatCheckboxModule, MatCardModule, FormsModule, ReactiveFormsModule, MatCheckboxModule, JsonPipe, MatListModule, 
+  MatBadgeModule
 ];
+
+const MainPageComponents = [
+  MainPage, listItemVirticle, navBar, HeadLineInfo, Attention,
+];
+
+const ModelComponents = [
+  ItemProductComponent, ItemAdminComponent, ProductOrderAdminComponent
+];
+
+const AdminComponents = [
+  AdminComponent, CustomerAdminComponent, DashboardAdminComponent, MassageAdminComponent, OrdersAdminComponent, ProductsAdminComponent, AddNewProduct
+];
+
+const StoreComponents = [
+  StorePageComponent,
+];
+
+
 @NgModule({
   declarations: [
     AppComponent,
-    MainPage,
-    listItemVirticle,
-    navBar,
-    HeadLineInfo,
-    Attention,
-    AdminComponent,
-    AddNewProduct,
-    StorePageComponent,
-    ItemProductComponent,
-    ItemAdminComponent
+    MainPageComponents,
+    StoreComponents,
+    ModelComponents,
+    AdminComponents
   ],
   imports: [
     BrowserModule,
@@ -64,6 +85,11 @@ const MaterialComponents = [
     PolicylModule,
     MaterialComponents,
     HttpClientModule,    
+    NgxPaginationModule,
+    RouterModule.forRoot([
+      { path: '', component: MainPage },
+      { path: 'store/:productType', component: StorePageComponent },
+    ])
   ],
   providers: [
     provideAnimationsAsync(),

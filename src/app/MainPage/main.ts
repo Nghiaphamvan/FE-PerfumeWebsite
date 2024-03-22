@@ -3,7 +3,7 @@ import { Component } from "@angular/core";
 @Component({
     selector: 'app-Main-Page',
     templateUrl: './main.html',
-    styleUrl: './main.scss'
+    styleUrl: './main.scss',
 })
 
 export class MainPage{
@@ -56,4 +56,6 @@ export class MainPage{
         imageSrc: '../assets/Images/Products/7.png'
       }
     ]
+
+    textMakeUp = 'Make Up'
 }

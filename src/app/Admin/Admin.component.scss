@@ -1,0 +1,46 @@
+.container-admin-page {
+    display: flex;
+
+    .navbar {
+        width: 335px;
+        height: 100vh;
+
+        
+        border-right: 1px solid #dbdbdb;
+
+        .logo-admin-page {
+            margin-top: 40px;
+            margin-left: 20px;
+            margin-bottom: 40px;
+            p {
+                font-size: 28px;
+                font-family: "Pacifico", cursive;
+                font-weight: 400;
+                font-style: normal;
+            }
+        }
+
+        .list-btn-admin-page {
+            display: flex;
+            flex-direction: column;
+
+            .btn-admin-page {
+                display: flex;
+                height: 46px;
+                margin: 0 12px;
+                margin-bottom: 12px;
+                margin-top: 12px;
+                border-radius: 8px;
+                padding-left: 12px;
+                border: 0;
+                line-height: 46px;
+                align-items: center;
+                background-color: white;
+            }
+
+            .btn-admin-page:hover {
+                background-color: #f2f2f2;
+            }
+        }
+    }
+}

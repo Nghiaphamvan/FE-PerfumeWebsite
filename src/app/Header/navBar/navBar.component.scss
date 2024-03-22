@@ -1,0 +1,34 @@
+.Navbar {
+    justify-content:  center;
+
+    .Logo {
+        cursor: pointer;
+    }
+
+    .nav {
+        height: 60px;
+
+        .Body-care, .Search {
+            border-right: 1px solid #999494;
+        }
+
+        .navItem {
+            width: 160px;
+            height: 100%;
+
+            cursor: pointer;
+
+            p {
+                text-align: center;
+                line-height: 60px;           
+                font-size: 18px;
+            }
+        }
+
+        .navItem:hover {
+            background-color: #1f1e1e;
+            color: #fff;
+
+        }
+    }
+}
