@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -45,6 +45,9 @@ import { ProductsAdminComponent } from './Admin/Products/products.component';
 import {MatBadgeModule} from '@angular/material/badge';
 import { ProductOrderAdminComponent } from './Models/itemOrderAdmin/itemOrderAdmin.component';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { BenefitComponent } from './MainPage/Benefit/Benefit.component';
+import { BlogComponent } from './MainPage/Blog/Blog.component';
+import { FooterComponent } from './MainPage/Footer/Footer.component';
 
 const MaterialComponents = [
   MatSlideToggleModule, MatButtonModule, MatIconModule, MatFormFieldModule, MatSelectModule, MatInputModule, MatChipsModule,
@@ -53,7 +56,7 @@ const MaterialComponents = [
 ];
 
 const MainPageComponents = [
-  MainPage, listItemVirticle, navBar, HeadLineInfo, Attention,
+  MainPage, listItemVirticle, navBar, HeadLineInfo, Attention, BenefitComponent, BlogComponent, FooterComponent
 ];
 
 const ModelComponents = [
@@ -68,6 +71,11 @@ const StoreComponents = [
   StorePageComponent,
 ];
 
+
+const routes: Routes = [
+  { path: 'dashboard', component: DashboardAdminComponent},
+  { path: 'orders', component: OrdersAdminComponent}
+]
 
 @NgModule({
   declarations: [
@@ -89,7 +97,9 @@ const StoreComponents = [
     RouterModule.forRoot([
       { path: '', component: MainPage },
       { path: 'store/:productType', component: StorePageComponent },
-    ])
+      { path: 'admin', component: AdminComponent}
+    ]),
+    RouterModule.forChild(routes),
   ],
   providers: [
     provideAnimationsAsync(),

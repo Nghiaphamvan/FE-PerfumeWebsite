@@ -1,0 +1,14 @@
+<div class="titleListItemVirticle">
+    <p class="Text">Tiemperfume's Blog</p>
+    <div class="horizontal-line" ></div>
+</div>
+
+<div class="wrap-blog">
+    <div class="container-blog" *ngFor="let blog of Blogs">
+        <div class="container-item-blog">
+            <img [src]="blog.imgSrc" alt="">
+            <p style="font-weight: 800;">{{blog.title}}</p>
+            <p style="text-align: justify;">{{blog.content}}</p>
+        </div>
+    </div>
+</div>

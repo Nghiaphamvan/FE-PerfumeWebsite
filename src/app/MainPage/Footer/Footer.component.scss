@@ -1,0 +1,84 @@
+
+.wrap-brand {
+    height: 200px;
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .container-brand {
+        display: flex;
+        width: 67%;
+        justify-content: space-around;
+        margin: auto;
+        
+        img {
+            width: 180px;
+            height: 104px;
+            object-fit: cover;
+        }
+    }
+}   
+
+.wrap-footer {
+    background-color: #040404;
+    color: #fff;
+
+
+    .container-footer{
+    
+        width: 63%;
+        margin: auto;
+        padding: 40px;
+        display: flex;
+        justify-content: space-between;
+
+        p {
+            font-size: 14px;
+            text-align: justify;
+            line-height: 2;
+        }
+
+        .title-footer {
+            font-size: 24px;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .contact, .category, .custom-support, .recruitment {
+            margin-right: 40px;
+            max-width: 300px;
+        }
+
+        .contact {
+            span {
+                font-size: 24px;
+                margin-right: 4px;
+            }
+
+            div {
+                display: flex;
+                margin-bottom: 8px;
+            }
+        }
+    }
+}
+
+.wrap-under-footer {
+    background-color: #252525;
+
+    .container-under-footer {
+        display: flex;
+        padding: 20px;
+        justify-content: space-between;
+        width: 63%;
+        margin: auto;
+        div {
+            display: flex;
+            color: #fff;
+            margin-top: 8px;
+            p {
+                margin-right: 12px;
+            }
+        }
+    }
+}

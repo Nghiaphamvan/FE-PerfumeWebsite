@@ -1,0 +1,11 @@
+<div class="wrap-benefit">
+    <div class="container-benefit" *ngFor="let benefit of benefits">
+        <div class="container-item-benefit">
+            <img [src]="benefit.policySource" alt="#">
+            <div class="content-benefit">
+                <p style="font-weight: 700; margin-bottom: 8px;">{{benefit.policyContent}}</p>
+                <p>{{benefit.content}}</p>
+            </div>
+        </div>
+    </div>
+</div>
