@@ -73,8 +73,17 @@ const StoreComponents = [
 
 
 const routes: Routes = [
-  { path: 'dashboard', component: DashboardAdminComponent},
-  { path: 'orders', component: OrdersAdminComponent}
+  {path: '', component: MainPage},
+  {path: 'store/:productType', component: StorePageComponent},
+  {path: 'admin', component: AdminComponent, children: [
+    {path:'dashboard', component: DashboardAdminComponent},
+    {path: 'order', component: OrdersAdminComponent},
+    {path: 'product', component: ProductOrderAdminComponent},
+    {path: 'customer', component: CustomerAdminComponent},
+    {path: 'massage', component: MassageAdminComponent},
+    {path: 'addnewproduct', component: AddNewProduct}
+  ]}
+  
 ]
 
 @NgModule({
@@ -94,11 +103,6 @@ const routes: Routes = [
     MaterialComponents,
     HttpClientModule,    
     NgxPaginationModule,
-    RouterModule.forRoot([
-      { path: '', component: MainPage },
-      { path: 'store/:productType', component: StorePageComponent },
-      { path: 'admin', component: AdminComponent}
-    ]),
     RouterModule.forChild(routes),
   ],
   providers: [

@@ -22,9 +22,8 @@ export interface Perfume {
 })
 export class AddNewProduct  {
 
-    // http Request
-    // readonly APIURL = "https://localhost:7164/api/Product/";
-    // constructor(private http: HttpClient){}
+    readonly APIURL = "https://localhost:7164/api/Product/";
+    constructor(private http: HttpClient){}
 
     // newPerfume: Perfume = {
     //     name: 'Tên nước hoa',
@@ -37,22 +36,34 @@ export class AddNewProduct  {
     //     origin: 'Xuất xứ'
     //   };
       
-    // products:any=[];
+    products:any=[];
 
-    // refreshProduct(){
-    //     this.http.get(this.APIURL + 'getAllPerfumes').subscribe(data => {
-    //         this.products = data;
-    //     });
-    // }
 
-    // ngOnInit(){
-    //     this.refreshProduct();
-    // }
+    refreshProduct(){
+        this.http.get(this.APIURL + 'getAllPerfumes').subscribe(data => {
+            this.products = data;
+        });
+        console.log(this.products);
+    }
+
+    getSomeProducts () {
+        const queryParams = { n: 5 };
+
+        this.http.get(this.APIURL + 'getSomeProducts', {params: queryParams}).subscribe(data => {
+            this.refreshProduct
+        })
+
+       
+    }
+
+    ngOnInit(){
+        this.refreshProduct();
+        // this.getSomeProducts();
+    }
 
 
     // addPerfume(){
     //     this.http.post(this.APIURL + 'addNewPerfume', this.newPerfume).subscribe(data => {
-    //         alert(data);
     //         this.refreshProduct();
     //     })
     // }

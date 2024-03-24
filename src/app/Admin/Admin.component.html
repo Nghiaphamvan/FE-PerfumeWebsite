@@ -7,37 +7,37 @@
         </div>
 
         <div class="list-btn-admin-page">
-            <button class="btn-admin-page">
+            <button routerLink="dashboard" class="btn-admin-page">
                 <span class="material-symbols-outlined" style="font-size: 32px;">grid_view</span>
                 <p style="margin: 0; margin-left: 12px; font-size: 16px;">Dashboard</p>
             </button>
 
-            <button class="btn-admin-page">
+            <button routerLink="order" class="btn-admin-page">
                 <span class="material-symbols-outlined" style="font-size: 32px;">shopping_cart</span>
                 <p style="margin: 0; margin-left: 12px; font-size: 16px;">Orders</p>
             </button>
 
-            <button class="btn-admin-page">
+            <button routerLink="product" class="btn-admin-page">
                 <span class="material-symbols-outlined" style="font-size: 32px;">inventory_2</span>
                 <p style="margin: 0; margin-left: 12px; font-size: 16px;">Products</p>
             </button>
 
-            <button class="btn-admin-page">
+            <button routerLink="customer" class="btn-admin-page">
                 <span class="material-symbols-outlined" style="font-size: 32px;">supervisor_account</span>
                 <p style="margin: 0;margin-left: 12px; font-size: 16px;">Customer</p>
             </button>
 
-            <button class="btn-admin-page">
+            <button routerLink="addnewproduct" class="btn-admin-page">
                 <span class="material-symbols-outlined" style="font-size: 32px;">add_box</span>
                 <p style="margin: 0;margin-left: 12px; font-size: 16px;">Add Product</p>
             </button>
 
-            <button class="btn-admin-page">
+            <button routerLink="massage" class="btn-admin-page">
                 <span class="material-symbols-outlined" style="font-size: 32px;">mail</span>
                 <p style="margin: 0;margin-left: 12px; font-size: 16px;">Massage</p>
             </button>
 
-            <button class="btn-admin-page" style="position: absolute; bottom: 0; left: 0; width: 311px;">
+            <button  class="btn-admin-page" style="position: absolute; bottom: 0; left: 0; width: 311px;">
                 <span class="material-symbols-outlined" style="font-size: 32px; ">menu</span>
                 <p style="margin: 0;margin-left: 12px; font-size: 16px;">More</p>
             </button>
@@ -46,7 +46,7 @@
         
     </div>
 
-    <div class="Content" style="margin: auto;">
+    <div class="Content" style="margin: auto; padding: 0;">
         <router-outlet></router-outlet>
     </div>
 </div>
