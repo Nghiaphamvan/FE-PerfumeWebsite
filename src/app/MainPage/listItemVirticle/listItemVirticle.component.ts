@@ -1,11 +1,9 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
 import SwiperCore, {Navigation, Pagination, EffectCoverflow } from 'swiper';
+import { MyService } from "../../HttpRequest/my-services.service";
+import { error } from "console";
 
 SwiperCore.use([Navigation, Pagination, EffectCoverflow]);
-
-interface carouselImage {
-  imageSrc: string
-}
 
 @Component({
   selector: 'list-Item-Virticle',
@@ -15,9 +13,23 @@ interface carouselImage {
 })
 
 export class listItemVirticle {
+
+  constructor(private myService : MyService){}
+
   title = 'carousel';
-  @Input() Images: carouselImage[]=[];
   @Input() Text = '';
+  @Input() amountProduct = 0;
+  myArray: any[] = [];
+
+  ngOnInit(){
+    this.myService.getSomeData(this.amountProduct).subscribe(data => {
+      console.log("success");
+      this.myArray = data;
+      console.log(this.myArray);
+    }, error => {
+      console.log(error);
+    })
+  }
 
   hoveredIndex: number | null = null;
 

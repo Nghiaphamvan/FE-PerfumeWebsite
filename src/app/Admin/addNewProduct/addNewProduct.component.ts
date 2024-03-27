@@ -1,19 +1,15 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { Observable } from 'rxjs';
+import { MyService } from "../../HttpRequest/my-services.service";
+import { error } from "console";
 
-export interface Perfume {
-    name: string;
-    description: string;
-    type: string;
-    state: string;
-    price: number;
-    capacity: number;
-    quantity: number;
-    origin: string;
+export class Product {
+    name: string ="";
+    price: number = 0;
+    brand: string = "";
+    description: string = "";
+    notes: string = "";
+    url: string = "";
 }
-  
-
 @Component({
     selector: 'add-new-product',
     templateUrl: './addNewProduct.component.html',
@@ -21,50 +17,43 @@ export interface Perfume {
     encapsulation: ViewEncapsulation.None
 })
 export class AddNewProduct  {
+    // constructor(private myService: MyService) { }
 
-    readonly APIURL = "https://localhost:7164/api/Product/";
-    constructor(private http: HttpClient){}
+    // newProduct : Product = {
+    //   name: "test",
+    //   price: 0,
+    //   brand: "test",
+    //   description: "test",
+    //   notes: "test",
+    //   url: "test"
+    // } 
 
-    // newPerfume: Perfume = {
-    //     name: 'Tên nước hoa',
-    //     description: 'Mô tả về nước hoa',
-    //     type: 'Loại nước hoa',
-    //     state: 'Tình trạng',
-    //     price: 100,
-    //     capacity: 50,
-    //     quantity: 1000,
-    //     origin: 'Xuất xứ'
-    //   };
-      
-    products:any=[];
+    // ngOnInit() {
+    //     this.myService.fetchData().subscribe(
+    //       data => {
+    //         console.log("success");
+    //         // Xử lý kết quả trả về
+    //         console.log(data);
+    //       },
+    //       error => {
+    //         // Xử lý lỗi nếu có
+    //         console.error(error);
+    //       }
+    //     );
 
+    //     this.myService.getSomeData(5).subscribe(data => {
+    //         console.log("success");
+    //         // Xử lý kết quả trả về
+    //         console.log(data);
+    //       }, error => {
+    //         console.error(error);
+    //     });
 
-    refreshProduct(){
-        this.http.get(this.APIURL + 'getAllPerfumes').subscribe(data => {
-            this.products = data;
-        });
-        console.log(this.products);
-    }
-
-    getSomeProducts () {
-        const queryParams = { n: 5 };
-
-        this.http.get(this.APIURL + 'getSomeProducts', {params: queryParams}).subscribe(data => {
-            this.refreshProduct
-        })
-
-       
-    }
-
-    ngOnInit(){
-        this.refreshProduct();
-        // this.getSomeProducts();
-    }
-
-
-    // addPerfume(){
-    //     this.http.post(this.APIURL + 'addNewPerfume', this.newPerfume).subscribe(data => {
-    //         this.refreshProduct();
-    //     })
+    //     this.myService.addNewProduct(this.newProduct).subscribe(data => {
+    //       console.log("Success");
+    //       console.log(data);
+    //       }, error => {
+    //       console.log(error)
+    //     });
     // }
 }

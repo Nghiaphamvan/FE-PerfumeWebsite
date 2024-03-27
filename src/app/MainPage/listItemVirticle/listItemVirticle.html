@@ -20,7 +20,7 @@
     class="mySwiper"
   >
     <ng-template swiperSlide
-      *ngFor="let image of Images;
+      *ngFor="let image of myArray;
       let i = index;"
 
     >
@@ -31,7 +31,7 @@
         <div class="container-Image-product" >
           <img class="Image-product"
           [class.Image-product-hover]="hoveredIndex === i"
-          [src]="image.imageSrc" alt="#">
+          [src]="image.url" alt="#">
 
           <div
           [class.cover-product-hover]="hoveredIndex === i"
@@ -52,12 +52,12 @@
 
         <div class="container-price">
           <a href="#" class="name-product" style="text-decoration: none; color: rgb(27, 27, 27);" >
-            Jean Paul Gaultier Divine EDP
+            {{image.name}}
           </a>
   
           <div class="price-product" style="display: flex; justify-content: space-around; align-items: center;">
-            <p class="price-product-new" style="display: block;">4.699.000</p>
-            <p class="price-product-old" style="display: block;">5.300.000</p>
+            <p class="price-product-new" style="display: block;">{{image.pice}}</p>
+            <p class="price-product-old" style="display: block;">{{image.pice + image.pice*8/100}}</p>
           </div>
         </div>
         <div class="discount">
