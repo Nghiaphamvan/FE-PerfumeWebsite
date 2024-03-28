@@ -1,4 +1,4 @@
-<div class="titleListItemVirticle">
+<div class="titleListItemVirticle" style="margin-top: 20px;">
   <p class="Text">{{Text}}</p>
   <div class="horizontal-line" ></div>
 </div>
@@ -55,14 +55,15 @@
             {{image.name}}
           </a>
   
-          <div class="price-product" style="display: flex; justify-content: space-around; align-items: center;">
-            <p class="price-product-new" style="display: block;">{{image.pice}}</p>
-            <p class="price-product-old" style="display: block;">{{image.pice + image.pice*8/100}}</p>
+          <div class="price-product" style="display: flex; justify-content: space-around; align-items: center;"
+          >
+            <p class="price-product-new" style="display: flex; margin-right: 20px;">{{ (image.pice*1000).toLocaleString('vi-VN')}}₫</p>
+            <p class="price-product-old" style="display: flex;">{{(image.pice*1000 + image.pice*80).toLocaleString('vi-VN')}}₫</p>
           </div>
         </div>
-        <div class="discount">
+        <!-- <div class="discount">
           <p>- 8%</p>
-        </div>
+        </div> -->
       </div>
     </ng-template>
   </swiper>

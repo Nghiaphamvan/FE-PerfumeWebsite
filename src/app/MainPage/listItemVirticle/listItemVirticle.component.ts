@@ -19,6 +19,8 @@ export class listItemVirticle {
   title = 'carousel';
   @Input() Text = '';
   @Input() amountProduct = 0;
+  @Input() nameCampaign = '';
+  @Input() typeProduct = '';
   myArray: any[] = [];
 
   ngOnInit(){
@@ -30,7 +32,7 @@ export class listItemVirticle {
       console.log(error);
     })
   }
-
+  
   hoveredIndex: number | null = null;
 
   divOpacity: number = 1;

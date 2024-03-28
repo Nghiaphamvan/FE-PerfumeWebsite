@@ -1,8 +1,9 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 
 import {FormBuilder, FormGroup} from '@angular/forms';
 import { ActivatedRoute } from "@angular/router";
-
+import { MyService  } from "../HttpRequest/my-services.service";
+import { error } from "console";
 @Component({
     selector: 'store-page',
     templateUrl: './storePage.component.html',
@@ -11,17 +12,35 @@ import { ActivatedRoute } from "@angular/router";
 export class StorePageComponent implements OnInit{
 
     typePage: string = "";
+    @Input() amountProduct = 40;
+    p: number = 1;
 
-    constructor(private _formBuilder: FormBuilder, private route: ActivatedRoute) {
+    Products: any[] = [];
+
+    constructor(private _formBuilder: FormBuilder, private route: ActivatedRoute, private myService: MyService) {
         this.createTypeListGroup();
         this.createTradeMarkGroup();
     }
 
-    ngOnInit(): void {
+    ngOnInit(){
         this.route.params.subscribe(params => {
-          this.typePage = params['productType'];
+            this.typePage = params['productType'];
         });
-    }
+
+        // this.myService.getSomeData(this.amountProduct).subscribe(data => {
+        //     console.log("success");
+        //     this.Products = data
+        // }, error => {
+        //     console.log(error);
+        // })
+
+        this.myService.GetAllData().subscribe(data => {
+            console.log("success");
+            this.Products = data;
+        }, error => {
+            console.log(error);
+        })
+      }
 
     favoriteSeason: string = '';
     categoryList: string[] = ["MEN's PERFUME", "WOMEN's PERFUME", "MINI PERFUME", "NICHE PERFUME", "MAKE UP", "BODY CARE", "GIFT SET"];

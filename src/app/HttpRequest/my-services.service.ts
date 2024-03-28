@@ -21,7 +21,7 @@ export class MyService {
 
   readonly apiUrl = 'https://localhost:7164/api/Product/'; // URL của API
 
-  fetchData() {
+  GetAllData() {
     return this.http.get<any>(this.apiUrl + 'getAllPerfumes');
   }
 

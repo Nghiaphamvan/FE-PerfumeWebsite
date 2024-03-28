@@ -1,10 +1,10 @@
-export class PerfumeDetail {
+export class PerfumeType {
     id: number =0
     name: string = ''
+    pice: string = ''
+    brand: string = ''
     description: string = ''
-    type: string = ''
-    state: string = ''
-    price: number = 0
-    quantity: number = 10000
-    origin: string = ''
+    notes: number = 0
+    url: number = 10000
+    volume: string = ''
 }

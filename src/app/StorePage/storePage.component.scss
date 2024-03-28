@@ -105,12 +105,15 @@
     }
 
     .list-product {
+        display: flex;
+        flex-direction: column;
         flex: 3.5;
 
         .container-product {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
+
         }
 
         .typeList {
@@ -229,4 +232,13 @@
         text-align: center;
     }
       
+}
+
+::ng-deep {
+    .ngx-pagination {
+        li {
+            margin: 4px;
+            border-radius: 4px !important;
+        }
+    }
 }

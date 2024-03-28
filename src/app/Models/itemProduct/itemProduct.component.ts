@@ -1,4 +1,17 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
+import { PerfumeType } from "../../Service/perfumeDetailModel";
+import number from "stream";
+
+export interface ProductType {
+    id: number;
+    name: string;
+    pice: number;
+    url: string;
+    volume: number;
+    description: string;
+    brand: string;
+    notes: string;
+}
 
 @Component({
     selector: 'item-product',
@@ -6,5 +19,5 @@ import { Component } from "@angular/core";
     styleUrl: './itemProduct.component.scss'
 })
 export class ItemProductComponent{
-    
+    @Input() Product!: ProductType;
 }

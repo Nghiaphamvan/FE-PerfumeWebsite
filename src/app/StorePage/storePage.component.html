@@ -102,27 +102,12 @@
             </div>
         </div>
 
-        <div class="container-product">
-            <item-product></item-product>
-            <item-product></item-product>
-            <item-product></item-product>
-            <item-product></item-product>
-
-            <item-product></item-product>
-            <item-product></item-product>
-            <item-product></item-product>
-            <item-product></item-product>
-
-            <item-product></item-product>
-            <item-product></item-product>
-            <item-product></item-product>
-            <item-product></item-product>
-
-            <item-product></item-product>
-            <item-product></item-product>
-            <item-product></item-product>
-            <item-product></item-product>
+        <div class="container-product" >
+            <div *ngFor="let product of Products | paginate: { itemsPerPage: 20, currentPage: p }" >
+                <item-product [Product]="product"></item-product>
+            </div>
         </div>
+        <pagination-controls style="margin: auto; margin-top: 12px;" (pageChange)="p = $event"></pagination-controls>
     </div>
     
     

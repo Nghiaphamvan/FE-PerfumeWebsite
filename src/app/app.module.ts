@@ -3,6 +3,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 
 
+import { StorePageComponent } from './StorePage/storePage.component';
+import { AdminComponent } from './Admin/Admin.component';
+import { DashboardAdminComponent } from './Admin/Dashboard/dashboard.component';
+import { OrdersAdminComponent } from './Admin/Orders/orders.component';
+import { ProductOrderAdminComponent } from './Models/itemOrderAdmin/itemOrderAdmin.component';
+import { CustomerAdminComponent } from './Admin/Customer/customer.component';
+import { MassageAdminComponent } from './Admin/Massage/massage.component';
+import { AddNewProduct } from './Admin/addNewProduct/addNewProduct.component';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainPage } from './MainPage/main';
@@ -17,15 +26,13 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatButtonModule } from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
-import { AdminComponent } from './Admin/Admin.component';
-import { AddNewProduct } from './Admin/addNewProduct/addNewProduct.component';
+
 import {MatChipsModule} from '@angular/material/chips';
 import { HttpClientModule } from '@angular/common/http';
-import { AuthService } from './Service/auth.Service';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
-import { StorePageComponent } from './StorePage/storePage.component';
+
 import { ItemProductComponent } from './Models/itemProduct/itemProduct.component';
 import { ItemAdminComponent } from './Models/itemAdmin/itemAdmin.component';
 import {MatRadioModule} from '@angular/material/radio';
@@ -37,13 +44,10 @@ import {JsonPipe} from '@angular/common';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 
 import {MatListModule} from '@angular/material/list';
-import { CustomerAdminComponent } from './Admin/Customer/customer.component';
-import { DashboardAdminComponent } from './Admin/Dashboard/dashboard.component';
-import { MassageAdminComponent } from './Admin/Massage/massage.component';
-import { OrdersAdminComponent } from './Admin/Orders/orders.component';
+
 import { ProductsAdminComponent } from './Admin/Products/products.component';
 import {MatBadgeModule} from '@angular/material/badge';
-import { ProductOrderAdminComponent } from './Models/itemOrderAdmin/itemOrderAdmin.component';
+
 import {NgxPaginationModule} from 'ngx-pagination';
 import { BenefitComponent } from './MainPage/Benefit/Benefit.component';
 import { BlogComponent } from './MainPage/Blog/Blog.component';
@@ -60,38 +64,18 @@ const MainPageComponents = [
 ];
 
 const ModelComponents = [
-  ItemProductComponent, ItemAdminComponent, ProductOrderAdminComponent
+  ItemProductComponent, ItemAdminComponent, ProductsAdminComponent
 ];
 
 const AdminComponents = [
-  AdminComponent, CustomerAdminComponent, DashboardAdminComponent, MassageAdminComponent, OrdersAdminComponent, ProductsAdminComponent, AddNewProduct
+  AdminComponent, CustomerAdminComponent, DashboardAdminComponent, MassageAdminComponent, OrdersAdminComponent, AddNewProduct, ProductOrderAdminComponent, StorePageComponent,
 ];
-
-const StoreComponents = [
-  StorePageComponent,
-];
-
-
-const routes: Routes = [
-  {path: '', component: MainPage},
-  {path: 'store/:productType', component: StorePageComponent},
-  {path: 'admin', component: AdminComponent, children: [
-    {path:'dashboard', component: DashboardAdminComponent},
-    {path: 'order', component: OrdersAdminComponent},
-    {path: 'product', component: ProductOrderAdminComponent},
-    {path: 'customer', component: CustomerAdminComponent},
-    {path: 'massage', component: MassageAdminComponent},
-    {path: 'addnewproduct', component: AddNewProduct}
-  ]}
-  
-]
 
 @NgModule({
   declarations: [
     AppComponent,
     MainPageComponents,
-    StoreComponents,
-    ModelComponents,
+    ModelComponents,  
     AdminComponents
   ],
   imports: [
@@ -103,11 +87,9 @@ const routes: Routes = [
     MaterialComponents,
     HttpClientModule,    
     NgxPaginationModule,
-    RouterModule.forChild(routes),
   ],
   providers: [
     provideAnimationsAsync(),
-    AuthService,
   ],
   bootstrap: [AppComponent]
 })
