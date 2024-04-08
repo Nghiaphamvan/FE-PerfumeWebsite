@@ -9,9 +9,11 @@ import { ProductOrderAdminComponent } from './Models/itemOrderAdmin/itemOrderAdm
 import { CustomerAdminComponent } from './Admin/Customer/customer.component';
 import { MassageAdminComponent } from './Admin/Massage/massage.component';
 import { AddNewProduct } from './Admin/addNewProduct/addNewProduct.component';
+import { BrandComponent } from './MainPage/Brands/brands.component';
 
 const routes: Routes = [
   {path: '', component: MainPage},
+  {path: 'brand', component: BrandComponent},
   {path: 'store/:productType', component: StorePageComponent},
   {path: 'admin', component: AdminComponent, children: [
     {path:'dashboard', component: DashboardAdminComponent},

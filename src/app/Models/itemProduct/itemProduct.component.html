@@ -1,5 +1,6 @@
 <div class="container-item-product">
-    <!-- <div class="discount">-20%</div> -->
+    <div [class.isDiscount]="isDiscount" class="discount">-{{percentSale}}%</div>
+
     <div class="image-item-prodct">
         <img class="img-item-product" [src]="Product.url" alt="#">
     </div>   
@@ -8,8 +9,8 @@
             {{Product.name}}
         </p>
         <div class="price-item-product">
-            <p class="price-after-discount">{{ (Product.pice*1000).toLocaleString('vi-VN')}}₫</p>
-            <p class="original-price">{{(Product.pice*1000 + Product.pice*80).toLocaleString('vi-VN')}}₫</p>
+            <p class="price-after-discount">{{ (Product.price*1000).toLocaleString('vi-VN')}}₫</p>
+            <p [class.isOldPrice]="isOldPrice" class="original-price">{{(Product.price*1000 + Product.price*percentSale*10).toLocaleString('vi-VN')}}₫</p>
         </div>
     </div>
 </div>

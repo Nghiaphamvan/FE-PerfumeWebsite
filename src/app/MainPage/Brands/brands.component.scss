@@ -1,0 +1,43 @@
+p {
+    margin: 0;
+    padding: 0;
+}
+
+.wrap-container-brands  {
+    height: 1080px;
+    width: 65%;
+    margin: auto;
+    margin-top: 160px;
+    p {
+        font-size: 32px;
+        margin: 20px;
+    }
+
+    .container {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+
+        .brand-box {
+            border: 1px solid #ccc;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 260px;
+            height: 300px;
+            align-items: center;
+            margin: 20px;
+            img {
+                width: 200px;
+                height: 200px;
+                object-fit: cover;
+            }
+
+            p {
+                font-size: 20px;
+                text-align: center;
+            }
+        }
+       
+    }
+}

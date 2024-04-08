@@ -21,6 +21,17 @@ export class MyService {
 
   readonly apiUrl = 'https://localhost:7164/api/Product/'; // URL của API
 
+  getPercentSaleByID(id: number) {
+    const productIdString: string = id.toString();
+    return this.http.get<any>(this.apiUrl + `GetPercentSaleByID?id=${productIdString}`);
+  }
+
+  getProductByCategory(name: string){ 
+    const encodedInput: string = encodeURIComponent(name);
+    // https://localhost:7164/api/Product/GetProductByCategory?name=NICHE%20PERFUME'  
+    return this.http.get<any>(this.apiUrl + `GetProductByCategory?name=${encodedInput}`);
+  }
+
   GetAllData() {
     return this.http.get<any>(this.apiUrl + 'getAllPerfumes');
   }
@@ -31,6 +42,14 @@ export class MyService {
 
     // Truyền tham số productId trong URL của yêu cầu GET
     return this.http.get<any>(this.apiUrl + `GetSomeProduct?n=${productIdString}`);
+  }
+
+  getAllBrands(){
+    return this.http.get<any>(this.apiUrl + 'GetAllBrands');
+  } 
+
+  getAllCategories(){
+    return this.http.get<any>(this.apiUrl + 'GetAllCategories');
   }
 
   addNewProduct(newProduct: Product){

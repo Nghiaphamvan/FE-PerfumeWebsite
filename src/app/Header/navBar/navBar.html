@@ -14,7 +14,7 @@
         </div>
 
 
-        <div [routerLink]="['./store', 'brand']" class="Brand navItem">
+        <div (click)="redirectToBrand()" class="Brand navItem">
             <p>Brand</p>
         </div>
 
@@ -22,23 +22,23 @@
             <p>Gift set</p>
         </div>
 
-        <div [routerLink]= "['/store', 'makeup']" class="Make-up navItem">
-            <p>Make up</p>
-        </div>
-
-        <div [routerLink]= "['/store', 'skincare']" class="Skin-care navItem">
-            <p>Skin care</p>
-        </div>
-
-        <div [routerLink]= "['/store', 'bodycarer']" class="Body-care navItem">
+        <div [routerLink]= "['/store', 'bodycare']" class="Body-care navItem">  
             <p>Body care</p>
         </div>
 
-        <div class="Search navItem">
-            <p>Search</p>
+        <div class="Search navItem"  (click)="activeBtnSearch()">
+            <span style="font-size: 28px;" class="material-symbols-outlined">{{iconSearch}}</span>
         </div>
         <div class="Cart navItem">
             <p>Cart</p>
+        </div>
+        <div [ngClass]="{'active-Search-box': iconSearch =='keyboard_arrow_down'}" class="Search-box">
+            <div class="input-box">
+                <input type="text">
+                <span style="font-size: 28px;" class="material-symbols-outlined">search</span>
+            </div>
+            <div class="listProductSearch">
+            </div>
         </div>
     </div>
 </div>

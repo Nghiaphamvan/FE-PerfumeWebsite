@@ -1,3 +1,4 @@
+
 <div style="
         position: fixed;
         top: 0; left: 0;
@@ -19,10 +20,10 @@
             <mat-radio-group
                 aria-labelledby="example-radio-group-label"
                 class="example-radio-group"
-                [(ngModel)]="favoriteSeason"
+                [(ngModel)]="thisComponetCategory"
             >
-                @for (season of categoryList; track season) {
-                    <mat-radio-button class="example-radio-button" [value]="season" ><p>{{season}}</p></mat-radio-button>
+                @for (season of Categories; track season) {
+                    <mat-radio-button class="example-radio-button" (change)="getProductByCategory(season)" [value]="season" ><p>{{season}}</p></mat-radio-button>
                 }
             </mat-radio-group>
         </div>
@@ -30,7 +31,7 @@
         <div class="css-filter filter-price">
             <label id="example-radio-group-label" class="filter-title" >Price</label>
     
-            <mat-slider min="0" max="1000" style="width: 85%; margin: auto; color: #040404;">
+            <mat-slider min="0" max="3000" style="width: 85%; margin: auto; color: #040404;">
                 <input [(ngModel)]="startValue" (input)="updateStartValue()" value="{{ startValue }}" matSliderStartThumb>
                 <input [(ngModel)]="endValue" (input)="updateEndValue()" value="{{ endValue }}" matSliderEndThumb>
             </mat-slider>
@@ -39,33 +40,18 @@
                 <p class="value-box">{{startValue}}</p>
                 <p class="value-box">{{endValue}}</p>
             </div>
-            <button mat-stroked-button color="primary" class="btn-filter">Filter</button>
+            <button (click)="filtProductByPrice()" mat-stroked-button color="primary" class="btn-filter">Filter</button>
         </div>
         
-        <div class=" css-filter filter-size">
+        <div class="css-filter filter-size">
             <label id="example-radio-group-label" class="filter-title" >Size</label>
             <div>
-                <button mat-stroked-button class="btn-size">30 ml</button>
-                <button mat-stroked-button class="btn-size">50 ml</button>
-                <button mat-stroked-button class="btn-size">100 ml</button>
+                <button mat-stroked-button (click)="selectSize(100)" [ngClass]="{'btn-active': CurrentVolume === 100}" class="btn-size">100 ml</button>
+                <button mat-stroked-button (click)="selectSize(250)" [ngClass]="{'btn-active': CurrentVolume === 250}" class="btn-size">250 ml</button>
+                <button mat-stroked-button (click)="selectSize(650)" [ngClass]="{'btn-active': CurrentVolume === 650}" class="btn-size">650 ml</button>
             </div>
         </div>
-    
-        <div class="css-filter filter-type">
-            <label id="example-radio-group-label" class="filter-title" >Type</label>
-
-            <div class="filter-input">
-                <input type="text" [(ngModel)]="typeSearch">
-                <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="search"></mat-icon>
-            </div>
-
-            <section class="example-section" [formGroup]="typeListGroup" style="display: block;">
-                <div *ngFor="let controlName of typeList">
-                <p><mat-checkbox [formControlName]="controlName">{{ controlName }}</mat-checkbox></p>
-                </div>
-            </section>
-        </div>
-    
+        
         <div class="css-filter filter-trade-mark">
             <label id="example-radio-group-label" class="filter-title" >TradeMark</label>
 
@@ -73,11 +59,15 @@
                 <input type="text" [(ngModel)]="trademarkSearch">
                 <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="search"></mat-icon>
             </div>
+
     
-    
-            <section class="example-section" [formGroup]="trademarklistGroup" style="display: block;">
-                <div *ngFor="let controlName of trademarklist">
-                <p><mat-checkbox [formControlName]="controlName">{{ controlName }}</mat-checkbox></p>
+            <section class="example-section" style="display: block; max-height: 500px; overflow-y: auto;">
+                <div *ngFor="let controlName of Brands">
+                    <p>
+                        <mat-checkbox (change)="getCheckedBrands(controlName)" [checked]="isSelected(controlName)">
+                            {{ controlName }}
+                        </mat-checkbox>
+                    </p>
                 </div>
             </section>
         </div>
@@ -101,14 +91,17 @@
                 </div>
             </div>
         </div>
-
-        <div class="container-product" >
-            <div *ngFor="let product of Products | paginate: { itemsPerPage: 20, currentPage: p }" >
-                <item-product [Product]="product"></item-product>
+        <div *ngIf="Products.length != 0; else otherContent" style="margin-bottom: 20px;">
+            <div class="container-product">
+                <div *ngFor="let product of Products | paginate: { itemsPerPage: 16, currentPage: p }">
+                    <item-product [Product]="product"></item-product>
+                </div>
             </div>
+            <pagination-controls [ngClass]="{'disable': Products.length < 16}" style="margin: auto; margin-top: 12px;" (pageChange)="p = $event"></pagination-controls>
         </div>
-        <pagination-controls style="margin: auto; margin-top: 12px;" (pageChange)="p = $event"></pagination-controls>
+        
+        <ng-template #otherContent>
+            <img style="width: 300px; height: 300px; object-fit: cover; margin: auto; margin-top: 200px;" src="./assets/Images/Notfound.jpg" alt="">
+        </ng-template>
     </div>
-    
-    
 </div>

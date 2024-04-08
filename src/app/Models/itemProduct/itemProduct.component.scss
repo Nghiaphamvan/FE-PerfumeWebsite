@@ -7,9 +7,11 @@
     border: 1px solid #040404;
 
     margin-top: 20px;
+    margin-left: 10px;
 
     .discount {
 
+        display: none;
         position: absolute;
         width: 56px;
         height: 16px;
@@ -59,9 +61,18 @@
             }
 
             .original-price {
+                display: none;
                 text-decoration: line-through;
                 color: #adadad;
             }
         }
     }
+}
+
+.isDiscount {
+    display: block !important;
+}
+
+.isOldPrice {
+    display: block !important;
 }

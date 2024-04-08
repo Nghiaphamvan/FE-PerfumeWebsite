@@ -1,6 +1,6 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
 import SwiperCore, {Navigation, Pagination, EffectCoverflow } from 'swiper';
-import { MyService } from "../../HttpRequest/my-services.service";
+import { MyService } from "../../Service/my-services.service";
 import { error } from "console";
 
 SwiperCore.use([Navigation, Pagination, EffectCoverflow]);

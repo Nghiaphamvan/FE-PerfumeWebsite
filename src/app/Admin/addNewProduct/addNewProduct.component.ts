@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
-import { MyService } from "../../HttpRequest/my-services.service";
+import { MyService } from "../../Service/my-services.service";
 import { error } from "console";
 
 export class Product {

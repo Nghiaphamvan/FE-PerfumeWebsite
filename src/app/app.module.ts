@@ -52,6 +52,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { BenefitComponent } from './MainPage/Benefit/Benefit.component';
 import { BlogComponent } from './MainPage/Blog/Blog.component';
 import { FooterComponent } from './MainPage/Footer/Footer.component';
+import { BrandComponent } from './MainPage/Brands/brands.component';
 
 const MaterialComponents = [
   MatSlideToggleModule, MatButtonModule, MatIconModule, MatFormFieldModule, MatSelectModule, MatInputModule, MatChipsModule,
@@ -60,7 +61,7 @@ const MaterialComponents = [
 ];
 
 const MainPageComponents = [
-  MainPage, listItemVirticle, navBar, HeadLineInfo, Attention, BenefitComponent, BlogComponent, FooterComponent
+  MainPage, listItemVirticle, navBar, HeadLineInfo, Attention, BenefitComponent, BlogComponent, FooterComponent, BrandComponent
 ];
 
 const ModelComponents = [
@@ -87,6 +88,7 @@ const AdminComponents = [
     MaterialComponents,
     HttpClientModule,    
     NgxPaginationModule,
+    
   ],
   providers: [
     provideAnimationsAsync(),

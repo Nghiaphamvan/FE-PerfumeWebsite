@@ -1,0 +1,26 @@
+<div style="
+        position: fixed;
+        top: 0; left: 0;
+        z-index: 9999;
+        background-color: #fff;
+        width: 100%;
+        border-bottom: 1px solid #999494;
+        box-shadow: inset;"
+    >
+    <headline-info></headline-info>
+    <navbar></navbar>
+</div>
+
+<div class="wrap-container-brands" >
+    <p>Brands</p>
+        <div class="container">
+            <div class="brand-box" *ngFor="let brand of Brands">
+                <img src="./assets/Images/Brand/{{brand}}.jpg" alt="">
+                <p>
+                    {{brand}}
+                </p>
+           </div>
+        </div>
+</div>
+
+<footer></footer>
