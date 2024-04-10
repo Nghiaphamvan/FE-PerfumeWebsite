@@ -10,11 +10,13 @@ import { CustomerAdminComponent } from './Admin/Customer/customer.component';
 import { MassageAdminComponent } from './Admin/Massage/massage.component';
 import { AddNewProduct } from './Admin/addNewProduct/addNewProduct.component';
 import { BrandComponent } from './MainPage/Brands/brands.component';
+import { CheckoutPageComponent } from './CheckOutPage/checkoutPage.component';
 
 const routes: Routes = [
   {path: '', component: MainPage},
   {path: 'brand', component: BrandComponent},
   {path: 'store/:productType', component: StorePageComponent},
+  {path: 'cart', component: CheckoutPageComponent},
   {path: 'admin', component: AdminComponent, children: [
     {path:'dashboard', component: DashboardAdminComponent},
     {path: 'order', component: OrdersAdminComponent},

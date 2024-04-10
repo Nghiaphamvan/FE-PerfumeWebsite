@@ -8,6 +8,7 @@ p {
     width: 65%;
     margin: auto;
     margin-top: 160px;
+
     p {
         font-size: 32px;
         margin: 20px;
@@ -17,6 +18,7 @@ p {
         display: flex;
         align-items: center;
         flex-wrap: wrap;
+        cursor: pointer;
 
         .brand-box {
             border: 1px solid #ccc;

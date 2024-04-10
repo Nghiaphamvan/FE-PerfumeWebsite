@@ -1,0 +1,28 @@
+<div class="container">
+    <div>
+        <img src="{{Product.url}}" alt="#">
+    </div>
+    <div class="content">
+        <div style="display: flex;">
+            <p class="label">{{Product.name}}</p>
+            <p [class.isDiscount]="isDiscount" class="discount">( -{{percentSale}}% )</p>
+        </div>
+        <div class="price">
+            <p class="new-price">{{ (Product.price*1000).toLocaleString('vi-VN')}}₫</p>
+
+            <p [class.isOldPrice]="isOldPrice" class="old-price">{{(Product.price*1000 + Product.price*percentSale*10).toLocaleString('vi-VN')}}₫ </p>
+            
+        </div>
+
+        <div class="notes">
+            <p>{{Product.description| truncate }}</p>
+        </div>
+
+        <div class="btn">
+            <button style="height: 30px; margin-right: 12px;" mat-stroked-button>Buy</button>
+            <button style="scale: 0.7;" mat-mini-fab matTooltip="Primary" color="primary" aria-label="Example mini fab with a heart icon">
+                <mat-icon>favorite</mat-icon>
+            </button>
+        </div>
+    </div>
+</div>

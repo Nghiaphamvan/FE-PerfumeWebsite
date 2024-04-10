@@ -6,6 +6,8 @@ import { MyService  } from "../Service/my-services.service";
 import { ProductType } from "../../DataType/ProductType";
 import { error } from "console";
 import { Observable } from "rxjs";
+import { DataService } from "../Service/share-data-component.service";
+
 @Component({
     selector: 'store-page',
     templateUrl: './storePage.component.html',
@@ -17,6 +19,7 @@ export class StorePageComponent implements OnInit{
     @Input() amountProduct = 40;
     p: number = 1;
     isbool: boolean = false;
+    searchText:string = '';
 
     Products: any[] = [];
     Brands: string[] = [];
@@ -40,12 +43,23 @@ export class StorePageComponent implements OnInit{
     startValue: number = 0;
     endValue: number = 3000;
 
+    TypeFromProduct : number = 2;
+
     typeListGroup!: FormGroup;
     BrandslistGroup!: FormGroup;
 
-    constructor(private _formBuilder: FormBuilder, private route: ActivatedRoute, private myService: MyService) {
+    CurrentSortProduct: string = 'Default'
+    valueSort: string = '';
+
+
+    
+    constructor(private _formBuilder: FormBuilder, private route: ActivatedRoute, private myService: MyService, private dataService: DataService) {
         this.getBrands();
         this.getCategories();
+
+        this.dataService.SearchCallFunction.subscribe(() => {
+            this.getDataForSearch();
+        })
     }
 
     async ngOnInit(){
@@ -53,45 +67,93 @@ export class StorePageComponent implements OnInit{
             this.typePage = params['productType'];
             this.preprocessingDatabyTypePage(this.typePage);
         });
+
+        this.route.paramMap.subscribe(params => {
+            const perfumeId = params.get('perfumeId');
+            console.log(perfumeId);
+        })
+
+        if(this.dataService.getPerfumeBrandFromBrandPage() != '') {
+            this.checkedBrands.push(this.dataService.getPerfumeBrandFromBrandPage());
+        }
+
+        if(this.dataService.getSearchText() != '') {
+            this.searchText = this.dataService.getSearchText();
+        }
     }
+
+
+    SortProduct(type: string, Products: ProductType[] ) {
+        switch(type) {
+            case'default':
+                console.log('default');
+                this.CurrentSortProduct = 'Default';
+                Products = Products.sort((a,b) => b.id - a.id);
+                break;
+            case 'atoz':
+                console.log('a->z');
+                this.CurrentSortProduct = 'A to Z';
+                Products = Products.sort((a,b) => a.name.localeCompare(b.name));
+                break;
+            case 'priceincrease':
+                console.log('Price increase');
+                this.CurrentSortProduct = 'Price ascending';
+                Products = Products.sort((a,b) => a.price - b.price);
+                break;
+            case 'pricedecrease':
+                this.CurrentSortProduct = 'Price descending';
+                Products = Products.sort((a,b) => b.price - a.price);
+                break;
+        }
+    }
+      
 
     private preprocessingDatabyTypePage(type: string) {
         switch(type) {
             case 'giftset':
-            case 'bodycare':
-            case 'sale':
-                this.thisComponetCategory = type;
                 this.getProductByCategory(type);
-                
+                break;
+            case 'bodycare':
+                this.getProductByCategory(type);
+                break;
+            case 'sale':
+                this.getProductSale();
                 break;
             case 'perfume':
                 this.thisComponetCategory = 'perfume';
                 this.getAllDatas();
                 break;
+            case 'search': 
+                this.getDataForSearch();
+                break;
         }
     }
 
+    private getDataForSearch() {
+        this.getData(this.myService.GetAllData(), data => {
+            this.Products = data;
+            this.backUpProducts = this.Products;
+            this.searchText = this.dataService.getSearchText();
+            this.Products = this.dataService.SearchProcessing(this.backUpProducts, this.searchText);
+        })
+    }
+    
     protected ProcessingProducts() {
         this.Products = this.backUpProducts;
-        
-        // Lọc theo giá sản phẩm
-        this.Products = this.Products.filter(product => product.price > this.startValue && product.price < this.endValue);
-    
-        // Lọc theo dung tích sản phẩm nếu có
+        if(this.startValue != 0 && this.endValue != 3000) {
+            this.Products = this.Products.filter(product => product.price > this.startValue && product.price < this.endValue);
+        } 
+
         if (this.CurrentVolume !== -1) {
             this.Products = this.Products.filter(product => product.volume === this.CurrentVolume);
-            console.log('process volume');
         }
-    
-        // Lọc theo thương hiệu sản phẩm nếu có
+
         if (this.checkedBrands.length !== 0) {
             this.Products = this.Products.filter(product => this.checkedBrands.includes(product.brand));
-            console.log('process brand');
         }
     }
 
     protected filtProductByPrice() {
-        console.log('Filt by Price');
         this.ProcessingProducts();
     }
     
@@ -134,6 +196,19 @@ export class StorePageComponent implements OnInit{
         
     }
 
+    protected changeTypeFormProduct(value: number) {
+        this.TypeFromProduct = value;
+        console.log(this.TypeFromProduct);
+    }
+
+    private getProductSale() {
+        this.getData(this.myService.getProductSale(), data => {
+            this.Products = data;
+            this.backUpProducts = this.Products;
+            this.ProcessingProducts();
+        });
+    }
+
     private getData(serviceCall: Observable<any>, callback?: (data: any) => void): void {
         serviceCall.subscribe(data => {
             if (callback) {
@@ -154,7 +229,7 @@ export class StorePageComponent implements OnInit{
         this.getData(this.myService.GetAllData(), data => {
             this.Products = data;
             this.backUpProducts = this.Products;
-            console.log('get All  Data', this.Products);
+            this.ProcessingProducts();
         })
     }
 

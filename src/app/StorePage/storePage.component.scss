@@ -1,20 +1,21 @@
-::ng-deep .mat-mdc-slider {
-    --mdc-slider-handle-width: 14px;
-    --mdc-slider-handle-height: 14px;
+
+::ng-deep{
+    html {
+        --mdc-slider-handle-color: #040404;
+        --mdc-slider-hover-handle-color:  #040404;
+        --mdc-slider-active-track-color:  #040404;
+    }
+
+    .mat-mdc-slider {
+        --mdc-slider-handle-width: 14px;
+        --mdc-slider-handle-height: 14px;
+    }
+
+    .mat-mdc-slider .mdc-slider__track--active {
+        --mdc-slider-active-track-height: 2px;
+    }
 }
 
-::ng-deep .mat-mdc-slider .mdc-slider__track--active {
-    --mdc-slider-active-track-height: 2px;
-}
-
-::ng-deep html {
-    --mdc-slider-handle-color: #040404;
-    --mdc-slider-hover-handle-color:  #040404;
-    --mdc-slider-active-track-color:  #040404;
-}
-
-
-  
 
 .example-radio-group {
     display: flex;
@@ -116,7 +117,7 @@
         }
 
         .typeList {
-            display: flex;
+            display: flex;  
             justify-content: space-between;
             border-bottom: 1px solid #ebebeb;
 
@@ -126,6 +127,18 @@
                 .container-sort-type-list {
                     width: 150px;
                     height: 30px;
+
+                    .sort-store-page {
+                        p {
+                            line-height: 28px;
+                            font-size: 14px;
+                        }
+                    }
+
+                    .sort-store-page:hover {
+                        background-color: #cacaca;
+                        color: #fff;
+                    }
                 }
 
 
@@ -248,4 +261,8 @@
 
 .disable {
     display: none !important;
+}
+
+.selectedButtonTypeFromProduct {
+    color: #999494 !important;
 }

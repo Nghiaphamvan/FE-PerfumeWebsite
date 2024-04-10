@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { MyService } from "../../Service/my-services.service";
 import { error } from "console";
 import { Router } from "@angular/router";
+import { DataService } from "../../Service/share-data-component.service";
 
 @Component({
     selector: 'brands',
@@ -10,10 +11,15 @@ import { Router } from "@angular/router";
 }) export class BrandComponent {
    
     Brands: string[] = [];
-    constructor(private myService: MyService) {}
+    constructor(private myService: MyService, private route: Router, private dataService: DataService) {}
   
     ngOnInit() {
         this.getAllBrands();
+    }
+
+    directProductBrand(brand: string) {
+        this.route.navigate(['/store/perfume']);
+        this.dataService.setPerfumeBrandFromBrandPage(brand);
     }
 
     getAllBrands() {

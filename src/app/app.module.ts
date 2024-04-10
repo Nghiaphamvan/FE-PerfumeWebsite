@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 
-
 import { StorePageComponent } from './StorePage/storePage.component';
 import { AdminComponent } from './Admin/Admin.component';
 import { DashboardAdminComponent } from './Admin/Dashboard/dashboard.component';
@@ -53,6 +52,9 @@ import { BenefitComponent } from './MainPage/Benefit/Benefit.component';
 import { BlogComponent } from './MainPage/Blog/Blog.component';
 import { FooterComponent } from './MainPage/Footer/Footer.component';
 import { BrandComponent } from './MainPage/Brands/brands.component';
+import { ItemProductType2Component } from './Models/itemProductType2/itemProductType2.component';
+import { TruncatePipe } from './Data processing/LimitText';
+import { CheckoutPageComponent } from './CheckOutPage/checkoutPage.component';
 
 const MaterialComponents = [
   MatSlideToggleModule, MatButtonModule, MatIconModule, MatFormFieldModule, MatSelectModule, MatInputModule, MatChipsModule,
@@ -65,19 +67,28 @@ const MainPageComponents = [
 ];
 
 const ModelComponents = [
-  ItemProductComponent, ItemAdminComponent, ProductsAdminComponent
+  ItemProductComponent, ItemAdminComponent, ProductsAdminComponent, ItemProductType2Component
 ];
 
 const AdminComponents = [
   AdminComponent, CustomerAdminComponent, DashboardAdminComponent, MassageAdminComponent, OrdersAdminComponent, AddNewProduct, ProductOrderAdminComponent, StorePageComponent,
 ];
 
+const ProcessingData = [
+  TruncatePipe
+]
+
+const CheckOutPage = [
+  CheckoutPageComponent
+]
 @NgModule({
   declarations: [
     AppComponent,
     MainPageComponents,
     ModelComponents,  
-    AdminComponents
+    AdminComponents, 
+    ProcessingData,
+    CheckOutPage
   ],
   imports: [
     BrowserModule,
@@ -88,7 +99,6 @@ const AdminComponents = [
     MaterialComponents,
     HttpClientModule,    
     NgxPaginationModule,
-    
   ],
   providers: [
     provideAnimationsAsync(),

@@ -21,6 +21,10 @@ export class MyService {
 
   readonly apiUrl = 'https://localhost:7164/api/Product/'; // URL của API
 
+  getProductSale() {
+    return this.http.get<any>(this.apiUrl + 'GetProductSale');
+  }
+
   getPercentSaleByID(id: number) {
     const productIdString: string = id.toString();
     return this.http.get<any>(this.apiUrl + `GetPercentSaleByID?id=${productIdString}`);

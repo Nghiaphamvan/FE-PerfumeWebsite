@@ -1,21 +1,7 @@
-
-<div style="
-        position: fixed;
-        top: 0; left: 0;
-        z-index: 9999;
-        background-color: #fff;
-        width: 100%;
-        border-bottom: 1px solid #999494;
-        box-shadow: inset;"
-    >
-    <headline-info></headline-info>
-    <navbar></navbar>
-</div>
-
-<div class="filter" style="margin-top: 96px;">
+<div class="filter">
     <div class="nav-sort" style="margin-top: 36px;">
         <div class="css-filter filter-category">
-            <label id="example-radio-group-label" class="filter-title" >Category</label>
+            <p id="example-radio-group-label" class="filter-title" >Category</p>
     
             <mat-radio-group
                 aria-labelledby="example-radio-group-label"
@@ -29,10 +15,10 @@
         </div>
     
         <div class="css-filter filter-price">
-            <label id="example-radio-group-label" class="filter-title" >Price</label>
+            <p id="example-radio-group-label" class="filter-title" >Price</p>
     
             <mat-slider min="0" max="3000" style="width: 85%; margin: auto; color: #040404;">
-                <input [(ngModel)]="startValue" (input)="updateStartValue()" value="{{ startValue }}" matSliderStartThumb>
+                <input [(ngModel)]="startValue" (input)="updateStartValue()" value="{{ startValue }}" matSliderStartThumb >
                 <input [(ngModel)]="endValue" (input)="updateEndValue()" value="{{ endValue }}" matSliderEndThumb>
             </mat-slider>
           
@@ -44,7 +30,7 @@
         </div>
         
         <div class="css-filter filter-size">
-            <label id="example-radio-group-label" class="filter-title" >Size</label>
+            <p id="example-radio-group-label" class="filter-title" >Size</p>
             <div>
                 <button mat-stroked-button (click)="selectSize(100)" [ngClass]="{'btn-active': CurrentVolume === 100}" class="btn-size">100 ml</button>
                 <button mat-stroked-button (click)="selectSize(250)" [ngClass]="{'btn-active': CurrentVolume === 250}" class="btn-size">250 ml</button>
@@ -53,10 +39,10 @@
         </div>
         
         <div class="css-filter filter-trade-mark">
-            <label id="example-radio-group-label" class="filter-title" >TradeMark</label>
+            <p id="example-radio-group-label" class="filter-title" >TradeMark</p>
 
             <div class="filter-input">
-                <input type="text" [(ngModel)]="trademarkSearch">
+                <input type="text" [(ngModel)]="trademarkSearch" id="trademarkSearch" name="trademarkSearch" autocomplete="trademarkSearch">
                 <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="search"></mat-icon>
             </div>
 
@@ -76,32 +62,69 @@
     <div class="list-product" style="margin-left: 20px; margin-top: 30px;">
         <div class="typeList">
             <div class="ChooseType">
-                <mat-icon style="width: 30px; height: 30px; line-height: 30px; font-size: 24px; cursor: pointer;">grid_view</mat-icon>
-                <mat-icon style="width: 30px; height: 30px; line-height: 30px; font-size: 30px; cursor: pointer;">view_list</mat-icon>
+                <mat-icon (click)="changeTypeFormProduct(1)" [ngClass]="{'selectedButtonTypeFromProduct': TypeFromProduct == 2}" style="width: 30px; height: 30px; line-height: 30px; font-size: 24px; cursor: pointer;">grid_view</mat-icon>
+                <mat-icon (click)="changeTypeFormProduct(2)" [ngClass]="{'selectedButtonTypeFromProduct': TypeFromProduct == 1}" style="width: 30px; height: 30px; line-height: 30px; font-size: 30px; cursor: pointer;">view_list</mat-icon>
             </div>
-    
             <div class="SortType">
                 <p style="height: 30px; line-height: 30px; font-size: 16px; ">Arrange :</p>
                 <div class="container-sort-type-list">
                     <mat-list role="list" style="padding: 0px; position: absolute;">
-                        <mat-list-item role="listitem" class="sort-type-item-list"><p class="sort-type-item-list-text">Item 1</p></mat-list-item>
-                        <mat-list-item role="listitem" class="sort-type-item-list"><p class="sort-type-item-list-text">Item 2</p></mat-list-item>
-                        <mat-list-item role="listitem" class="sort-type-item-list"><p class="sort-type-item-list-text">Item 3</p></mat-list-item>
+                        <mat-list-item role="listitem" class="sort-type-item-list">
+                            <p class="sort-type-item-list-text" [innerHTML]="CurrentSortProduct"></p>
+                        </mat-list-item>
+                        
+                        <mat-list-item (click)="SortProduct('atoz', Products)" role="listitem" class="sort-type-item-list sort-store-page">
+                            <p class="sort-type-item-list-text">
+                                A to Z
+                            </p>
+                        </mat-list-item>
+
+                        <mat-list-item (click)="SortProduct('priceincrease', Products)" role="listitem" class="sort-type-item-list sort-store-page">
+                            <p  class="sort-type-item-list-text">
+                                Price ascending
+                            </p>
+                        </mat-list-item>
+
+                        <mat-list-item (click)="SortProduct('pricedecrease', Products)" role="listitem" class="sort-type-item-list sort-store-page">
+                            <p  class="sort-type-item-list-text">
+                                Price descending
+                            </p>
+                        </mat-list-item>
+
+                        <mat-list-item (click)="SortProduct('default', Products)" role="listitem" class="sort-type-item-list sort-store-page">
+                            <p  class="sort-type-item-list-text">
+                                Default
+                            </p>
+                        </mat-list-item>
                     </mat-list>
                 </div>
             </div>
         </div>
-        <div *ngIf="Products.length != 0; else otherContent" style="margin-bottom: 20px;">
-            <div class="container-product">
-                <div *ngFor="let product of Products | paginate: { itemsPerPage: 16, currentPage: p }">
-                    <item-product [Product]="product"></item-product>
+        <div *ngIf="TypeFromProduct == 1; else OtherTypeFormProduct;">
+            <div *ngIf="Products.length != 0; else otherContent" style="margin-bottom: 20px;">
+                <div class="container-product">
+                    <div *ngFor="let product of Products | paginate: { itemsPerPage: 16, currentPage: p }">
+                        <item-product [Product]="product"></item-product>
+                    </div>
                 </div>
+                <pagination-controls [ngClass]="{'disable': Products.length < 16}" style="margin: auto; margin-top: 12px;" (pageChange)="p = $event"></pagination-controls>
             </div>
-            <pagination-controls [ngClass]="{'disable': Products.length < 16}" style="margin: auto; margin-top: 12px;" (pageChange)="p = $event"></pagination-controls>
         </div>
-        
-        <ng-template #otherContent>
-            <img style="width: 300px; height: 300px; object-fit: cover; margin: auto; margin-top: 200px;" src="./assets/Images/Notfound.jpg" alt="">
+
+        <ng-template #OtherTypeFormProduct>
+            <div *ngIf="Products.length != 0; else otherContent" style="margin-bottom: 20px;">
+                <div class="container-product">
+                    <div *ngFor="let product of Products | paginate: { itemsPerPage: 4, currentPage: p }">
+                        <item-product-type2 [Product]="product"></item-product-type2>
+                    </div>
+                </div>
+                <pagination-controls [ngClass]="{'disable': Products.length < 16}" style="margin: auto; margin-top: 12px;" (pageChange)="p = $event"></pagination-controls>
+            </div>
         </ng-template>
+
+        <ng-template #otherContent>
+            <img style="width: 300px; height: 300px; object-fit: cover; margin-left: 40%; margin-top: 200px;" src="./assets/Images/Notfound.jpg" alt="">
+        </ng-template>
+
     </div>
 </div>

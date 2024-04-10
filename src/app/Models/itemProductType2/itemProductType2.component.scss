@@ -1,0 +1,95 @@
+p {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    border: 1px solid #ccc;
+    margin: 20px;
+    width: 850px;
+    height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+    img {
+        width: 180px;
+        height: 180px;
+        object-fit: contain;
+        margin-top: 4px;
+    }
+
+    .content {
+        width: 620px;
+        height: 200px;
+
+        .label {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        .price {
+            display: flex;
+            margin-top: 12px;
+
+            .new-price, .old-price {
+                
+                margin-right: 20px;
+                font-size: 16px;
+            }
+
+            .old-price {
+                display: none;
+                text-decoration: line-through;
+                color: #adadad;
+            }
+        }
+
+        .notes {
+            height: 70px;
+            width: 620px;
+            margin-top: 12px;
+            color: #acacac;
+            
+            p {
+                margin-top: 4px;
+                text-align: justify;
+                margin-right: 20px;
+                line-height: 1.5;
+            }
+        }
+
+        .btn {
+            margin-top:8px;
+            display: flex;
+            align-items: center;
+        }
+    }
+}
+
+.example-button-row button,
+.example-button-row a {
+  margin-right: 8px;
+}
+
+.example-disabled {
+  display: inline-block;
+}
+
+
+.isDiscount {
+    display: block !important;
+}
+
+.isOldPrice {
+    display: block !important;
+}
+
+
+.discount {
+    display: none;
+    font-size: 16px;
+    border-radius: 4px;
+    margin-top: 20px;
+    margin-left: 12px;
+}

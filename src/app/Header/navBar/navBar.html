@@ -29,16 +29,15 @@
         <div class="Search navItem"  (click)="activeBtnSearch()">
             <span style="font-size: 28px;" class="material-symbols-outlined">{{iconSearch}}</span>
         </div>
-        <div class="Cart navItem">
-            <p>Cart</p>
+        <div (click)="redirectToCart()" class="Cart navItem" style="border-right: 1px solid #999494;">
+            <span style="font-size: 28px;" class="material-symbols-outlined">shopping_cart_checkout</span>
         </div>
         <div [ngClass]="{'active-Search-box': iconSearch =='keyboard_arrow_down'}" class="Search-box">
             <div class="input-box">
-                <input type="text">
-                <span style="font-size: 28px;" class="material-symbols-outlined">search</span>
+                <input type="text" [(ngModel)]="searchText" id="searchBox" name="searchBox" autocomplete="searchBox">
+                <span (click)="search()" style="font-size: 28px;" class="material-symbols-outlined">search</span>
             </div>
-            <div class="listProductSearch">
-            </div>
+            <div class="listProductSearch"></div>
         </div>
     </div>
 </div>
