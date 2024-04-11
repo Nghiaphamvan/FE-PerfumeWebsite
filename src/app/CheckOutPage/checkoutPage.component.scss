@@ -2,9 +2,119 @@ body {
     margin: 0;
     padding: 0;
 }
+p,span {
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
 .container {
     width: 65%;
-    background-color: aqua;
     height: 800px;
     margin: auto;
+    border: 1px solid #989898;
+    margin-top: 20px;
+    border-radius: 4px;
+
+    .header {
+        display: flex;
+        margin: 30px;
+        justify-content: space-between;
+        .btn-back {
+            height: 40px;
+            width: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            border-radius: 4px;
+            background-color: #ffffff;
+            border: 1px solid #eceeef;
+            cursor: pointer;
+        }
+    }
+
+    .container-product {
+        .table-container-product {
+            width: 90%;
+            margin: auto;
+            margin-top: 40px;
+            .header-table {
+                border-bottom: 1px solid #989898;
+                display: flex;
+                p {
+                    font-size: 20px;
+                    margin: 20px;
+                }
+            }
+
+            .product-list {
+                max-height: 464px;
+                overflow-y: auto;
+            }
+
+            .total {
+                height: 140px;  
+                margin-top: 12px;
+                border-radius: 8px;
+                background-color: #cbcdcf;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                .choose-shipping-method {
+                    margin-left: 40px;
+                    font-size: 16px;
+                }
+
+                .caculator {
+                    margin-right: 40px;
+                    width: 260px;
+                    height: 80%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    div {
+                        display:  flex;
+                        justify-content: space-between;
+
+                        p {
+                            font-size: 14px;
+                            margin: 0px 8px;
+                        }
+                    }
+
+                    .btn-checkout {
+                        border-radius: 4px;
+                        display: flex;
+                        justify-content: space-between;
+                        border: 0;
+                        background-color: #f23c44;
+                        color: #fff;
+                        p {
+                            margin: 8px 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+::-webkit-scrollbar {
+    width: 2px; // Độ rộng của thanh trượt
+}
+
+::-webkit-scrollbar-track {
+    background: #fff; // Màu nền của phần track 
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbcdcf; //Màu nền của phần thumb 
+    border-radius: 5px; // Độ cong viền của phần thumb 
+}
+
+::-webkit-scrollbar-corner {
+    background: transparent; // Màu nền của góc 
 }

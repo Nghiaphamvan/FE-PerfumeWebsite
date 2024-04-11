@@ -1,0 +1,22 @@
+<div [ngClass]="{'checked': checked === true}" (click)="activeClick()" class="container">
+    <img src="../assets/Images/Products/2.png" alt="">
+    <div class="info-product">
+        <p style="font-size: 16px; font-weight: 500;">Đây là tên của nước hoa </p>
+        <p style="font-size: 14px; font-weight: 500; color: #818181;">Brand: Dior Savauge</p>
+        <p style="font-size: 14px; font-weight: 500; color: #818181;">Volume: 100ml</p>
+    </div>
+
+    <div class="price-product">
+        <p class="new-Price">100.000đ</p>
+        <p class="old-Price">120.000đ</p>
+    </div>
+
+    <div class="quantity-product">
+        <span class="material-symbols-outlined">remove</span>
+        <p style="width: 20px; text-align: center;">12</p>
+        <span class="material-symbols-outlined">add</span>
+    </div>
+    <div class="total">
+        <p>1.200.000đ</p>
+    </div>
+</div>

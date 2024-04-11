@@ -1,5 +1,56 @@
 <div class="container">
     <div class="header">
-        <p>My Cart</p>
+        <p style="font-size: 38px;">My Cart</p>
+        <div class="btn-back">
+            <span style="font-size: 16px;" class="material-symbols-outlined">arrow_back_ios_new</span>
+            <p style="font-size: 14px;">Continue shopping</p>
+        </div>
+    </div>
+
+    <div class="container-product">
+        <div class="table-container-product">
+            <div class="header-table">
+                <p style="margin-left: 140px;">Product</p>
+                <p style="margin-left: 280px; margin-right: 20px;">Price</p>
+                <p style="margin-left: 140px;">Quantity</p>
+                <p style="margin-left: 112px;">Total</p>
+            </div>
+            <div class="product-list">
+                <item-product-checkout (getPrice)="handleAddToCart($event)"></item-product-checkout>
+                <item-product-checkout (getPrice)="handleAddToCart($event)"></item-product-checkout>
+                <item-product-checkout (getPrice)="handleAddToCart($event)"></item-product-checkout>
+                <item-product-checkout (getPrice)="handleAddToCart($event)"></item-product-checkout>
+            </div>
+            <div class="total">
+                <div class="choose-shipping-method">
+                    <p style="margin-bottom: 8px;">Choose shipping method: </p>
+                    <mat-radio-group aria-label="Select an option">
+                        <mat-radio-button  value="1"><p style="font-size: 14px;">Store pickup - Free</p></mat-radio-button>
+                        <br>
+                        <mat-radio-button  value="2"><p style="font-size: 14px;">Delivery at home</p></mat-radio-button>
+                    </mat-radio-group>
+                </div>
+
+                <div class="caculator">
+                    <div>
+                        <p style="font-weight: 500;">SUBTOTAL TTC</p>
+                        <p>{{SubtotalValue}}đ</p>
+                    </div>
+                    <div>
+                        <p style="font-weight: 500;">SHIPPING</p>
+                        <p>FREE</p>
+                    </div>
+                    <div>
+                        <p style="font-weight: 500;">TOTAL</p>
+                        <p>{{Total}}đ</p>
+                    </div>
+
+                    <button class="btn-checkout">
+                        <p style="font-weight: 600;">Checkout</p>
+                        <p>{{Checkout}}đ</p>
+                    </button>
+                </div>
+            </div>
+        </div>  
     </div>
 </div>

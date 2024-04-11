@@ -55,6 +55,7 @@ import { BrandComponent } from './MainPage/Brands/brands.component';
 import { ItemProductType2Component } from './Models/itemProductType2/itemProductType2.component';
 import { TruncatePipe } from './Data processing/LimitText';
 import { CheckoutPageComponent } from './CheckOutPage/checkoutPage.component';
+import { ItemProductCheckOutComponent } from './Models/itemProductCheckOut/itemProductCheckOut.component';
 
 const MaterialComponents = [
   MatSlideToggleModule, MatButtonModule, MatIconModule, MatFormFieldModule, MatSelectModule, MatInputModule, MatChipsModule,
@@ -79,7 +80,7 @@ const ProcessingData = [
 ]
 
 const CheckOutPage = [
-  CheckoutPageComponent
+  CheckoutPageComponent, ItemProductCheckOutComponent
 ]
 @NgModule({
   declarations: [
