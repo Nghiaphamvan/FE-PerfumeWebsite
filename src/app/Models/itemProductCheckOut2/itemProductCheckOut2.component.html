@@ -1,0 +1,27 @@
+<div class="wrap">
+    <div style="display: flex; align-items: center;">
+        <img src="{{productInfo.url}}" alt="">
+        <div>
+            <p style="max-width: 250px;">{{productInfo.name}}</p>
+            <p style="color: #aeb4bd; font-size: 14px;">{{productInfo.volume}}ml, {{productInfo.brand}}</p>
+        </div>
+    </div>
+    <div style="display: flex; min-width: 264px;">
+        <div style="display: flex;">
+            <span (click)="Update(productInfo.id, -1)" class="material-symbols-outlined">
+                remove
+            </span>
+            <p style="border: 1px solid #989898; width: 28px; height: 24px; text-align: center; border-radius: 4px; padding-top: 4px;">{{CartDetail.Quantity}}</p>
+            <span (click)="Update(productInfo.id, 1)" class="material-symbols-outlined">
+                add 
+            </span>
+        </div>
+        <p style="margin-top: 16px; margin-left: 20px;">{{(productInfo.price*CartDetail.Quantity).toLocaleString('vi-VN')}}.000đ</p>
+        
+        <div (click)="Update(productInfo.id, 0)" class="deletebutton">
+            <span class="deletebutton"  style="margin: 12px; margin-right: 12px;" class="material-symbols-outlined">
+            delete
+            </span>
+        </div>
+    </div>
+</div>

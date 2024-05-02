@@ -70,7 +70,6 @@ export class StorePageComponent implements OnInit{
 
         this.route.paramMap.subscribe(params => {
             const perfumeId = params.get('perfumeId');
-            console.log(perfumeId);
         })
 
         if(this.dataService.getPerfumeBrandFromBrandPage() != '') {
@@ -86,7 +85,6 @@ export class StorePageComponent implements OnInit{
     SortProduct(type: string, Products: ProductType[] ) {
         switch(type) {
             case'default':
-                console.log('default');
                 this.CurrentSortProduct = 'Default';
                 Products = Products.sort((a,b) => b.id - a.id);
                 break;
@@ -96,7 +94,6 @@ export class StorePageComponent implements OnInit{
                 Products = Products.sort((a,b) => a.name.localeCompare(b.name));
                 break;
             case 'priceincrease':
-                console.log('Price increase');
                 this.CurrentSortProduct = 'Price ascending';
                 Products = Products.sort((a,b) => a.price - b.price);
                 break;

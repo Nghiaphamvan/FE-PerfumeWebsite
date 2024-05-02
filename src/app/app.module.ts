@@ -56,11 +56,15 @@ import { ItemProductType2Component } from './Models/itemProductType2/itemProduct
 import { TruncatePipe } from './Data processing/LimitText';
 import { CheckoutPageComponent } from './CheckOutPage/checkoutPage.component';
 import { ItemProductCheckOutComponent } from './Models/itemProductCheckOut/itemProductCheckOut.component';
+import {DraggableScrollDirective } from './CustomActive/Scroll';
+import { UserComponent } from './User/User.component';
+import { itemProductCheckOut2Component } from './Models/itemProductCheckOut2/itemProductCheckOut2.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 const MaterialComponents = [
   MatSlideToggleModule, MatButtonModule, MatIconModule, MatFormFieldModule, MatSelectModule, MatInputModule, MatChipsModule,
   MatRadioModule, FormsModule, MatSliderModule, MatCheckboxModule, MatCardModule, FormsModule, ReactiveFormsModule, MatCheckboxModule, JsonPipe, MatListModule, 
-  MatBadgeModule
+  MatBadgeModule, MatDialogModule 
 ];
 
 const MainPageComponents = [
@@ -80,7 +84,15 @@ const ProcessingData = [
 ]
 
 const CheckOutPage = [
-  CheckoutPageComponent, ItemProductCheckOutComponent
+  CheckoutPageComponent, ItemProductCheckOutComponent, itemProductCheckOut2Component
+]
+
+const User = [
+  UserComponent
+]
+
+const CustomActive = [
+  DraggableScrollDirective
 ]
 @NgModule({
   declarations: [
@@ -89,7 +101,9 @@ const CheckOutPage = [
     ModelComponents,  
     AdminComponents, 
     ProcessingData,
-    CheckOutPage
+    CheckOutPage,
+    CustomActive,
+    User
   ],
   imports: [
     BrowserModule,

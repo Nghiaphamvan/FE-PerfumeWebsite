@@ -10,12 +10,24 @@ p,span {
 p {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+
+.div-container-all {
+
+    //display: flex;
+    max-width: 1219px;
+    min-width: 1219px;
+    overflow-x: hidden;
+    margin: auto;
+
+}
 .container {
-    width: 65%;
+    max-width: 1215px;
+    min-width: 1215px;
     height: 800px;
     margin: auto;
     border: 1px solid #989898;
     margin-top: 20px;
+    margin-right: 4px;
     border-radius: 4px;
 
     .header {
@@ -37,7 +49,7 @@ p {
 
     .container-product {
         .table-container-product {
-            width: 90%;
+            width: calc(90% + 3px);
             margin: auto;
             margin-top: 40px;
             .header-table {
@@ -87,6 +99,7 @@ p {
 
                     .btn-checkout {
                         border-radius: 4px;
+                        cursor: pointer;
                         display: flex;
                         justify-content: space-between;
                         border: 0;
@@ -102,8 +115,145 @@ p {
     }
 }
 
+.wrap-checkout{ 
+    max-width: 1215px;
+    min-width: 1215px;
+    height: 800px;
+    margin: auto;
+    border: 1px solid #989898;
+    margin-top: 20px;
+    border-radius: 4px;
+    background-color: #f6f6f6;
+    .container-checkout {
+        width: 94%;
+        height: calc(100% - 60px);
+
+        margin: auto;
+        margin-top: 30px;
+        display: flex;
+        justify-content: space-between;
+        .container-list-product-checkout {
+            flex: 1.4;
+            margin-right: 20px;
+            .btn-back {
+                height: 40px;
+                width: 180px;
+                display: flex;
+                align-items: center;
+                justify-content: space-evenly;
+                border-radius: 4px;
+                background-color: #ffffff;
+                border: 1px solid #eceeef;
+                cursor: pointer;
+                margin-bottom: 20px;
+            }
+            .btn-back:hover {
+                background-color: rgb(240, 240, 240);
+            }
+
+            .list-product-checkout {
+                padding: 20px 0px;
+                border-top: 1px solid #989898;
+                .container-product-checkout {
+                    background-color: #f6f6f6;
+                    height: 588px;
+                    margin-top: 20px;
+                    overflow: auto;
+                }
+            }
+        }
+
+        .container-checkout-arena {
+            flex: 1;
+            margin-left: 20px;
+            margin-top: 12px;
+            margin-bottom: 12px;
+            background-color: #565cba;
+            border-radius: 20px;
+            padding-left: 20px; 
+            padding-right: 26px;
+            padding-top: 20px;
+            .carttypeclass {
+                border: 1px solid #6a71c0;
+                width: 98px;
+                height: 72px; 
+                border-radius: 8px;
+                overflow: hidden;
+                cursor: pointer;
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+
+            .infoUser {
+                border-bottom: 1px solid #6a71c0;
+                padding-bottom: 20px;
+                margin-bottom: 7px;
+                p {
+                    font-size: 14px;
+                    color: #fff;
+                    margin-bottom: 8px;
+                    margin-top: 8px;
+                }
+
+                .input-type1, .input-type2 {
+                    width: 100%;
+                    height: 40px;
+                    border-radius: 4px;
+                    outline: none;
+                    border: none;
+                    padding-left: 8px;
+                    background-color: #6a70c4;
+                    color: #fff;
+                }
+                .input-type1 {
+                    font-size: 14px;
+                }
+
+                .input-type2 {
+                    font-size: 16px;
+                }
+            }
+
+            .total-checkout {
+                div, button {
+                    display: flex;
+                    justify-content: space-between;
+                    p {
+                        font-size: 14px;
+                        color: #fff;
+                        margin: 8px 0px;
+                    }
+                }
+
+                button {
+                    outline: none;
+                    border: none;
+                    width: 100%;
+                    margin: 20px 0px;
+                    height: 50px;
+                    border-radius: 8px;
+                    background-color: #48d1b1;
+                    align-items: center;
+                    padding: 12px;
+                }
+            }
+        }
+    }
+}
+
+.disable {
+    background-color: #474444 !important;
+}
+
+.clickedIConDelivery {
+    border: 2px solid #fff !important;
+}
+
 ::-webkit-scrollbar {
-    width: 2px; // Độ rộng của thanh trượt
+    width: 0px; // Độ rộng của thanh trượt
 }
 
 ::-webkit-scrollbar-track {
@@ -118,3 +268,5 @@ p {
 ::-webkit-scrollbar-corner {
     background: transparent; // Màu nền của góc 
 }
+
+

@@ -1,0 +1,43 @@
+body, p {
+    padding: 0;
+    margin: 0;
+}
+
+.wrap {
+    width: calc(97% - 6px);
+    height: 100px;
+    background-color: #fff; 
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 12px;
+    margin-bottom: 12px;
+
+    img {
+        width: 80px;
+        height: 80px;
+        object-fit: contain;
+        border-radius: 20px;
+        border: 1px solid #989898;
+    }
+
+    p {
+        font-size: 16px;
+        margin: 8px;
+
+    }
+    span {
+        margin-top: 12px;
+        font-size: 24px;
+        cursor: pointer;
+    }
+
+    .deletebutton {
+        color: #e5e5e5;
+    }
+
+    .deletebutton:hover {
+        color: rgb(240, 45, 45);
+    }
+}

@@ -1,7 +1,10 @@
 // my-service.service.ts hoặc my-component.component.ts
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { error } from 'node:console';
 import { Observable } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
+import { CartType } from '../../DataType/CartType';
 
 export class Product {
   name: string ="";
@@ -57,10 +60,76 @@ export class MyService {
   }
 
   addNewProduct(newProduct: Product){
-    // Thiết lập header của yêu cầu
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-    // Thực hiện HTTP POST request để thêm sản phẩm mới
     return this.http.post<any>(this.apiUrl + 'addNewPerfume', newProduct, { headers: headers });
+  }
+
+  addProductToCartMethod(CustomerID: number, ProductID: number): Observable<any> {
+    const body = { customerId: CustomerID, productId: ProductID };
+    return this.http.post<any>(this.apiUrl + 'AddProductToCart', body);
+  }
+  
+
+  AddProductToCart(CustomerId : number,  ProductId: number) {
+    this.addProductToCartMethod(CustomerId, ProductId).subscribe(
+      (response) => {
+          console.log('Success:', response);
+      },
+      (error) => {
+          console.error('Error:', error);
+      }
+  );
+  }
+
+  UpdateCart(ProductID: number, Response: string) {
+    const body = { productId: ProductID, response: Response };
+    const Pro = ProductID.toString();
+    const Re = Response.toString();
+    return this.http.put<any>(`${this.apiUrl}UpdateCart?id=${Pro}&response=${Re}`, body).subscribe(
+      (re) => {
+        console.log('succeess', re);
+      },
+      (er) => {
+        console.log('er', er);
+      }
+    );
+  }
+
+  UpdateCartAmount(ProductID: number, Amount: number) {
+    const body = {id: ProductID, amount: Amount};
+    const Pro = ProductID.toString();
+    const a = Amount.toString();
+    return this.http.put<any>(`${this.apiUrl}UpdateCart?id=${Pro}&response=${a}`, body).subscribe(
+      (re) => {
+        console.log('succeess', re);
+      },
+      (er) => {
+        console.log('er', er);
+      }
+    );
+  }
+
+
+  DeleteCart(CartID: number) {
+    // https://localhost:7164/api/Product/DeleteCart?id=1060
+    const Ca = CartID.toString();
+    return this.http.delete<any>(this.apiUrl + `DeleteCart?id=${Ca}`).subscribe(
+      (re)=> {
+        console.log(re);
+      }, (er) => {
+        console.log(er);
+      }
+    );
+  }
+
+  GetAllCartsByCustomerID(CustomerId: number) {
+    const id : string = CustomerId.toString();
+    return this.http.get<any>(this.apiUrl + `GetCartsByCustomerID?customerID=${id}`);
+  }
+
+  getProductByID(ProductID:number) {
+    const id:string = ProductID.toString();
+    return this.http.get<any>(this.apiUrl + `getPerfumeby${id}`);
   }
 }

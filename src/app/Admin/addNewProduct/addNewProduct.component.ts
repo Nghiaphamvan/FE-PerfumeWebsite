@@ -17,43 +17,24 @@ export class Product {
     encapsulation: ViewEncapsulation.None
 })
 export class AddNewProduct  {
-    // constructor(private myService: MyService) { }
+    constructor(private myService: MyService) { }
 
-    // newProduct : Product = {
-    //   name: "test",
-    //   price: 0,
-    //   brand: "test",
-    //   description: "test",
-    //   notes: "test",
-    //   url: "test"
-    // } 
+    newProduct : Product = {
+      name: "test",
+      price: 0,
+      brand: "test",
+      description: "test",
+      notes: "test",
+      url: "test"
+    } 
 
-    // ngOnInit() {
-    //     this.myService.fetchData().subscribe(
-    //       data => {
-    //         console.log("success");
-    //         // Xử lý kết quả trả về
-    //         console.log(data);
-    //       },
-    //       error => {
-    //         // Xử lý lỗi nếu có
-    //         console.error(error);
-    //       }
-    //     );
+    ngOnInit() {
 
-    //     this.myService.getSomeData(5).subscribe(data => {
-    //         console.log("success");
-    //         // Xử lý kết quả trả về
-    //         console.log(data);
-    //       }, error => {
-    //         console.error(error);
-    //     });
-
-    //     this.myService.addNewProduct(this.newProduct).subscribe(data => {
-    //       console.log("Success");
-    //       console.log(data);
-    //       }, error => {
-    //       console.log(error)
-    //     });
-    // }
+        this.myService.addNewProduct(this.newProduct).subscribe(data => {
+          console.log("Success");
+          console.log(data);
+          }, error => {
+          console.log(error)
+        });
+    }
 }

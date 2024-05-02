@@ -8,3 +8,8 @@ export interface ProductType {
     brand: string;
     notes: string;
 }
+
+export interface processCheckOutType {
+    idProduct: number;
+    respon: number
+}
