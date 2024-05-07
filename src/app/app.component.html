@@ -1,4 +1,5 @@
-<div style="
+<!-- <div>
+    <div style="
         position: fixed;
         top: 0; left: 0;
         z-index: 9999;
@@ -7,12 +8,29 @@
         border-bottom: 1px solid #999494;
         box-shadow: inset;"
     >
-    <headline-info></headline-info>
-    <navbar></navbar>
+        <headline-info></headline-info>
+        <navbar></navbar>
+    </div>
+    <div style="margin-top: 116px;">
+        <router-outlet></router-outlet>
+
+    </div> 
+    <footer></footer> 
+</div> -->
+
+<div class="Authentication-Container">
+    <ng-container *ngIf="type=== 1; else ifSignUp;">
+        <signin (goToSignUp)="getDirect($event)"></signin>
+    </ng-container>
+
+    <ng-template #ifSignUp>
+        <ng-container *ngIf="type===2; else forgotpassword">
+            <sign-up (goToSignIn)="getDirect($event)"></sign-up>
+        </ng-container>
+    </ng-template>
+    
+    <ng-template #forgotpassword>
+        <forgot-passwod (Direct)="getDirect($event)"></forgot-passwod>
+    </ng-template> 
+  
 </div>
-<div style="margin-top: 116px;">
-    <router-outlet></router-outlet>
-
-</div> 
-<footer></footer> 
-

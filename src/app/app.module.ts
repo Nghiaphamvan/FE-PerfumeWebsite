@@ -60,6 +60,9 @@ import {DraggableScrollDirective } from './CustomActive/Scroll';
 import { UserComponent } from './User/User.component';
 import { itemProductCheckOut2Component } from './Models/itemProductCheckOut2/itemProductCheckOut2.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { SignInComponent } from './SignIn/SignIn.Component';
+import { SignUpComponent } from './SignUp/SignUp.Component';
+import { ForgotPasswordComponent } from './ForgotPassword/forgotPassword.Component';
 
 const MaterialComponents = [
   MatSlideToggleModule, MatButtonModule, MatIconModule, MatFormFieldModule, MatSelectModule, MatInputModule, MatChipsModule,
@@ -72,7 +75,8 @@ const MainPageComponents = [
 ];
 
 const ModelComponents = [
-  ItemProductComponent, ItemAdminComponent, ProductsAdminComponent, ItemProductType2Component
+  ItemProductComponent, ItemAdminComponent, ProductsAdminComponent, ItemProductType2Component,
+  SignInComponent, SignUpComponent, ForgotPasswordComponent
 ];
 
 const AdminComponents = [

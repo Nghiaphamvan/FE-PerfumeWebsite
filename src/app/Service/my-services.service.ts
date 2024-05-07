@@ -24,6 +24,16 @@ export class MyService {
 
   readonly apiUrl = 'https://localhost:7164/api/Product/'; // URL của API
 
+  getData(serviceCall: Observable<any>, callback?: (data: any) => void): void {
+    serviceCall.subscribe(data => {
+        if (callback) {
+            callback(data);
+        }
+    }, error => {
+        console.log(error);
+    });
+  }
+
   getProductSale() {
     return this.http.get<any>(this.apiUrl + 'GetProductSale');
   }
@@ -131,5 +141,14 @@ export class MyService {
   getProductByID(ProductID:number) {
     const id:string = ProductID.toString();
     return this.http.get<any>(this.apiUrl + `getPerfumeby${id}`);
+  }
+
+  SignUp(FirstName: string, LastName: string, Email: string, Password: string, ConfirmPassword: string): Observable<any> {
+    const body = { FirstName: FirstName, LastName: LastName,  Email: Email, Password: Password, ConfirmPassword: ConfirmPassword};
+    return this.http.post<any>('https://localhost:7164/api/Account/SignUp', body);
+  }
+
+  checkMail(email: string) {
+      return this.http.get<any>(`https://localhost:7164/api/Account/checkEmail?email=${email}`);
   }
 }
