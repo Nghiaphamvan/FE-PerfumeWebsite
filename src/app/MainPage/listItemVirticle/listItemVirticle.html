@@ -36,14 +36,14 @@
           <div
           [class.cover-product-hover]="hoveredIndex === i"
                 class="cover-product">
-            <mat-icon>
-              <span class="material-symbols-outlined">
-                shopping_bag
-                </span>
+            <mat-icon style="cursor: pointer;">
+              <span (click)="AddToCartAtMainPage(i)" [ngClass]="{'clicked': iconNames[i]==='check_circle'}" class="material-symbols-outlined">
+                {{ iconNames[i] || 'shopping_bag' }}
+              </span>
             </mat-icon>
             <div class="verticle-line"></div>
-            <mat-icon>
-              <span class="material-symbols-outlined">
+            <mat-icon style="cursor: pointer;" >
+              <span (click)="passIdProduct(image.id)" class="material-symbols-outlined">
                 visibility
                 </span>
             </mat-icon>

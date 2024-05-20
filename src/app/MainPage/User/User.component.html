@@ -1,0 +1,31 @@
+<div class="wrap">
+    <div class="left">
+        <ul>
+            <li (click)="activenavLeft(0)">
+                    <span  style="color: rgb(64, 64, 240);" class="material-symbols-outlined">
+                    person
+                    </span>
+                    <p href="">My account</p>
+            </li>
+            <li [ngClass]="{'myAccountClcked': !myAccountClicked}" style="flex-direction: column; align-items: start; margin-left: 36px;">
+                <p style="margin-bottom: 8px;" (click)="myAccountActive(0)" (click)="backToMyProfile()" [ngClass]="{'clickednavLeft': myAccountArr[0]}">My Account</p>
+                <p style="margin-bottom: 8px;" (click)="myAccountActive(1)" routerLink="address" [ngClass]="{'clickednavLeft': myAccountArr[1]}">Address</p>
+                <p style="margin-bottom: 8px;" (click)="myAccountActive(2)" routerLink="changepassword" [ngClass]="{'clickednavLeft': myAccountArr[2]}">Change Password</p>
+            </li>
+
+            <li (click)="activenavLeft(1)" routerLink="purchaseorder" [ngClass]="{'clickednavLeft': navleft[1]}">
+                <span style="color: rgb(64, 64, 240);" class="material-symbols-outlined">list_alt</span>
+                <p href="">Purchase Order</p>
+            </li>
+
+            <li (click)="activenavLeft(2)" [ngClass]="{'clickednavLeft': navleft[2]}"><span style="color: #f4694b;" class="material-symbols-outlined">
+                mark_email_unread
+                </span>
+                <p href="">Notification</p>
+            </li>
+        </ul>
+    </div>
+    <div class="right">
+       <router-outlet></router-outlet>
+    </div>
+</div>

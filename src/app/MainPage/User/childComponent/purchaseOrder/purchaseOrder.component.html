@@ -1,0 +1,19 @@
+
+    <div class="navbar" >
+        <p [ngClass]="{'clicked': navNarArr[0]}" (click)="activeclick(0)">All</p>
+        <p [ngClass]="{'clicked': navNarArr[1]}" (click)="activeclick(1)">Wait for pay</p>
+        <p [ngClass]="{'clicked': navNarArr[2]}" (click)="activeclick(2)">Transpot</p>
+        <p [ngClass]="{'clicked': navNarArr[3]}" (click)="activeclick(3)">Waiting for delivery</p>
+        <p [ngClass]="{'clicked': navNarArr[4]}" (click)="activeclick(4)">Complete</p>
+        <p [ngClass]="{'clicked': navNarArr[5]}" (click)="activeclick(5)">Cancelled</p>
+    </div>
+
+    <div class="search">
+        <span class="material-symbols-outlined">search</span>
+        <input type="text" placeholder="Search by ID Product, Name Product">
+    </div>
+
+    <div class="main">
+        <item-product-user></item-product-user>
+        <item-product-user></item-product-user>
+    </div>

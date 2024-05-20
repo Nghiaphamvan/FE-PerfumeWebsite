@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 
-import { StorePageComponent } from './StorePage/storePage.component';
+import { StorePageComponent } from './MainPage/StorePage/storePage.component';
 import { AdminComponent } from './Admin/Admin.component';
 import { DashboardAdminComponent } from './Admin/Dashboard/dashboard.component';
 import { OrdersAdminComponent } from './Admin/Orders/orders.component';
@@ -27,7 +27,7 @@ import { MatButtonModule } from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 
 import {MatChipsModule} from '@angular/material/chips';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
@@ -54,15 +54,25 @@ import { FooterComponent } from './MainPage/Footer/Footer.component';
 import { BrandComponent } from './MainPage/Brands/brands.component';
 import { ItemProductType2Component } from './Models/itemProductType2/itemProductType2.component';
 import { TruncatePipe } from './Data processing/LimitText';
-import { CheckoutPageComponent } from './CheckOutPage/checkoutPage.component';
+import { CheckoutPageComponent } from './MainPage/CheckOutPage/checkoutPage.component';
 import { ItemProductCheckOutComponent } from './Models/itemProductCheckOut/itemProductCheckOut.component';
 import {DraggableScrollDirective } from './CustomActive/Scroll';
-import { UserComponent } from './User/User.component';
+import { UserComponent } from './MainPage/User/User.component';
 import { itemProductCheckOut2Component } from './Models/itemProductCheckOut2/itemProductCheckOut2.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { SignInComponent } from './SignIn/SignIn.Component';
-import { SignUpComponent } from './SignUp/SignUp.Component';
-import { ForgotPasswordComponent } from './ForgotPassword/forgotPassword.Component';
+import { SignInComponent } from './Authentication/SignIn/SignIn.Component';
+import { SignUpComponent } from './Authentication/SignUp/SignUp.Component';
+import { ForgotPasswordComponent } from './Authentication/ForgotPassword/forgotPassword.Component';
+import { AuthService } from './Service/Authorization';
+import { JwtModule } from '@auth0/angular-jwt';
+import { itemProductUserComponent } from './Models/itemProductUser/itemProductUser.component';
+import { itemAddresUserComponent } from './Models/itemAddresUser/itemAddresUser.component';
+import { addressUserComponent } from './MainPage/User/childComponent/address/address.component';
+import { changePasswordComponent } from './MainPage/User/childComponent/changePassword/changePassword.component';
+import { MyProfileComponent } from './MainPage/User/childComponent/myProfile/myProfile.component';
+import { PurchaseOrderComponent } from './MainPage/User/childComponent/purchaseOrder/purchaseOrder.component';
+import { DetailProductComponent } from './Models/detailProduct/detailProduct.component';
+import { fullScreenComponent } from './Models/fullScreen/fullScreen.component';
 
 const MaterialComponents = [
   MatSlideToggleModule, MatButtonModule, MatIconModule, MatFormFieldModule, MatSelectModule, MatInputModule, MatChipsModule,
@@ -71,12 +81,14 @@ const MaterialComponents = [
 ];
 
 const MainPageComponents = [
-  MainPage, listItemVirticle, navBar, HeadLineInfo, Attention, BenefitComponent, BlogComponent, FooterComponent, BrandComponent
+  MainPage, listItemVirticle, navBar, HeadLineInfo, Attention, BenefitComponent, BlogComponent, FooterComponent, BrandComponent, UserComponent
 ];
 
 const ModelComponents = [
   ItemProductComponent, ItemAdminComponent, ProductsAdminComponent, ItemProductType2Component,
-  SignInComponent, SignUpComponent, ForgotPasswordComponent
+  SignInComponent, SignUpComponent, ForgotPasswordComponent, itemProductUserComponent,
+  itemAddresUserComponent, addressUserComponent, changePasswordComponent, MyProfileComponent,
+  PurchaseOrderComponent, DetailProductComponent, fullScreenComponent
 ];
 
 const AdminComponents = [
@@ -118,9 +130,18 @@ const CustomActive = [
     MaterialComponents,
     HttpClientModule,    
     NgxPaginationModule,
+    JwtModule.forRoot({
+      config: { 
+        tokenGetter: () => localStorage.getItem('token'),
+      },
+    }),
+
   ],
   providers: [
-    provideAnimationsAsync(),
+    provideAnimationsAsync(), 
+    {
+      provide: HTTP_INTERCEPTORS, useClass: AuthService, multi: true 
+    }
   ],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,133 @@
+<div class="div-container-all" #divcontainerall>
+   <ng-container *ngIf="!checkoutclicked; else aftercheckout"> 
+    <div class="container">
+        <div class="header">
+            <p style="font-size: 38px;">My Cart</p>
+            <div class="btn-back">
+                <span style="font-size: 16px;" class="material-symbols-outlined">arrow_back_ios_new</span>
+                <p style="font-size: 14px;">Continue shopping</p>
+            </div>
+        </div>
+    
+        <div class="container-product">
+            <div class="table-container-product">
+                <div class="header-table">
+                    <p style="margin-left: 140px;">Product</p>
+                    <p style="margin-left: 280px; margin-right: 20px;">Price</p>
+                    <p style="margin-left: 140px;">Quantity</p>
+                    <p style="margin-left: 112px;">Total</p>
+                </div>
+                <div class="product-list" >
+                    <div *ngFor="let cart of Carts">
+                        <item-product-checkout (CallBackReloadProduct)="reloadData($event)" [cart]="cart" (getPrice)="handleAddToCart($event)"></item-product-checkout>
+                    </div>
+                </div>
+                <div class="total">
+                    <div class="choose-shipping-method">
+                        <p style="margin-bottom: 8px;">Choose shipping method: </p>
+                        <mat-radio-group [(ngModel)]="selectedValue" aria-label="Select an option">
+                            <mat-radio-button value="1"><p style="font-size: 14px;">Store pickup - Free</p></mat-radio-button>
+                            <br>
+                            <mat-radio-button value="2"><p style="font-size: 14px;">Delivery at home</p></mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+    
+                    <div class="caculator">
+                        <div>
+                            <p style="font-weight: 500;">SUBTOTAL TTC</p>
+                            <p>{{total}}đ</p>
+                        </div>
+                        <div>
+                            <p style="font-weight: 500;">SHIPPING</p>
+                            <p>FREE</p>
+                        </div>
+                        <div>
+                            <p style="font-weight: 500;">TOTAL</p>
+                            <p>{{Checkout}}đ</p>
+                        </div>
+    
+                        <button [ngClass]="{'disable': Checkout == 0 }" (click)="CheckOutActive()" class="btn-checkout">
+                            <p style="font-weight: 600;">Checkout</p>
+                            <p>{{Checkout}}đ</p>
+                        </button>
+                    </div>
+                </div>
+            </div>  
+        </div>
+    </div>
+   </ng-container>
+
+    <ng-template #aftercheckout>
+        <div class="wrap-checkout">
+            <div class="container-checkout">
+                <div class="container-list-product-checkout">
+                    <button (click)="backCheckOutActive()" class="btn-back">
+                        <span style="font-size: 16px;" class="material-symbols-outlined">arrow_back_ios_new</span>
+                        <p  style="font-size: 14px;">Back to cart</p>
+                    </button>
+                    <div class="list-product-checkout">
+                        <p style="font-size: 24px;">Check out</p>
+                        <p style="font-size: 16px; margin-top: 8px;">You have 4 item to pay for!</p>
+                        <div class="container-product-checkout">
+                            <div *ngFor="let cartChecked of cartsCheckedCheckout">
+                                <itemcheckout2 (UpdateQuatity)="ProcessCartype2($event)"  [CartDetail]="cartChecked"></itemcheckout2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="container-checkout-arena">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <p style="font-size: 20px; font-size: 700; color: #fff;">Cart Detail</p>
+                        <img style="width: 40px; height: 40px; object-fit: contain;" src="../assets/Images/Notfound.jpg" alt="">
+                    </div>
+                    <p style="font-size: 14px; font-size: 700; color: #fff; margin-top: 8px;">Cart type</p>
+                    <div style="display: flex; justify-content: space-between; margin-top: 8px; margin-bottom: 12px;">
+                        <div [ngClass]="{'clickedIConDelivery': clickIconDelivery[0]}" (click)="isclickedIconDelivery(0)" class="carttypeclass"><img src="../assets/Images/Logo/Delivery.jpg" alt=""></div>
+                        <div [ngClass]="{'clickedIConDelivery': clickIconDelivery[1]}" (click)="isclickedIconDelivery(1)" class="carttypeclass"><img src="../assets/Images/Logo/Momo.jpg" alt=""></div>
+                        <div [ngClass]="{'clickedIConDelivery': clickIconDelivery[2]}" (click)="isclickedIconDelivery(2)" class="carttypeclass"><img src="../assets/Images/Logo/Paypal.jpg" alt=""></div>
+                        <div [ngClass]="{'clickedIConDelivery': clickIconDelivery[3]}" (click)="isclickedIconDelivery(3)" class="carttypeclass"><img src="../assets/Images/Logo/Visa.jpg" alt=""></div>
+                    </div>
+                    <div class="infoUser">
+                        <p>Bank account number</p>
+                        <input class="input-type1" type="text" name="BankAccountNumber" id="BankAccountNumber">
+                        <p>Delivery address</p>
+                        <input class="input-type1"  type="text" name="DeliveryAddress" id="DeliveryAddress">
+                        <p>Customer name</p>
+                        <input class="input-type1"  type="text" name="CustomerName" id="CustomerName">
+                        <div style="display: flex; justify-content: space-between;">
+                            <div>
+                                <p>Zip Code</p>
+                                <input class="input-type2"  type="text" name="Zipcode" id="Zipcode">
+                            </div>
+    
+                            <div>
+                                <p>Phone number</p>
+                                <input class="input-type2"  type="text" name="PhoneNumber" id="PhoneNumber">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="total-checkout">
+                        <div>
+                            <p style="font-weight: 500;">SUBTOTAL TTC</p>
+                            <p>{{total}}đ</p>
+                        </div>
+                        <div>
+                            <p style="font-weight: 500;">SHIPPING</p>
+                            <p>FREE</p>
+                        </div>
+                        <div>
+                            <p style="font-weight: 500;">TOTAL</p>
+                            <p>{{Checkout}}đ</p>
+                        </div>
+    
+                        <button class="btn-checkout" style="margin-top: 12px;">
+                            <p style="font-weight: 600;">Checkout</p>
+                            <p>{{Checkout}}đ</p>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+</div>

@@ -1,0 +1,5 @@
+<!-- full-screen.component.html -->
+<div *ngIf="onPage" class="full-screen" (click)="onFullScreenClick()">
+  <detail-product [idProduct]="idProduct" (click)="onDetailProduct($event)"></detail-product>
+</div>
+  

@@ -1,0 +1,49 @@
+<div class="wrap">
+  <img src="../assets/Images/Products/5.png" alt="">
+  <div class="right">
+    <div class="headline">
+      <p class="name-product">{{infoDetailProduct.name}}</p>
+      <p class="new-price-product">{{CurrentProduct.price.toLocaleString('vi-VN')}}.000đ</p>
+      <p class="old-price-product">Cost: {{(CurrentProduct.price + CurrentProduct.price*salePercent/100).toLocaleString('vi-VN')}}.000đ</p>
+    </div>
+
+    <div class="info-product">
+      <p class="description">
+        {{infoDetailProduct.description | truncate:500:'...'}}
+      </p>
+
+      <div class="brand">
+        <p class="line">Brand: </p>
+        <p class="data">{{infoDetailProduct.brand}}</p>
+      </div>
+      <div class="category">
+        <p class="line">Category: </p>
+        <p class="data">Man perfume</p>
+      </div>
+    </div>
+
+    <div class="volume-add">
+      <div class="volume">
+        <p class="line">Volume: </p>
+        <p *ngFor="let v of volumeProduct" class="data"
+        [ngClass]="{'clicked': v.volume===CurrentProduct.volume}"
+        (click)="clickVolume(v.volume)"
+        >{{v.volume}}</p>
+  
+      </div>
+
+      <div class="add">
+        <p class="line">Quantity: </p>
+        <input class="quantity" [(ngModel)]="quantity" type="number" min="0" max="99"> 
+        <div>
+          <span class="material-symbols-outlined" (click)="changeQuantity(1)">arrow_drop_up</span>
+          <span class="material-symbols-outlined" (click)="changeQuantity(-1)">arrow_drop_down</span>
+        </div>
+        <div class="addtoCart">
+          <p (click)="addToCart()">Add to cart</p>
+        </div>
+      </div>  
+    </div>
+  </div>
+
+</div>

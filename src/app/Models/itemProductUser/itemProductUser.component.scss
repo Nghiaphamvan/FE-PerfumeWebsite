@@ -1,0 +1,92 @@
+p, body {
+    padding: 0;
+    margin:  0;
+}
+
+.wrap {
+    height: 200px;
+    margin: 12px 12px;
+    border: 1px solid #dbdbdb;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    width: 98%;
+
+    .headline {
+        margin: 10px 20px;
+        display: flex;
+        height: 20px;
+        justify-content: space-between;
+        border-bottom: 1px solid #e8e8e8;
+        padding-bottom: 20px;
+        padding-top: 10px;
+
+        .infor-delivery {
+            display: flex;
+            .delivery {
+                display: flex;
+                border-right: 1px solid #f4694b;
+                margin-right: 8px;
+                padding-right: 8px;
+                line-height: 20px;
+                align-items: center;
+                span {
+                    color: #42b5a6;
+                    font-size: 20px;
+                }
+                p {
+                    margin-left: 4px;   
+                    color: #42b5a6;
+                }
+            }
+            .status {
+                color:  #f4694b;
+            }
+        }
+
+        
+        
+        .btn-detail-product {
+            border: 1px solid #dbdbdb;
+            display: flex;
+            align-items: center;
+            line-height: 20px;
+            padding: 12px;
+
+            span {
+                font-size: 20px;
+                margin-right: 8px;
+                color: #858585;
+            }
+
+            p {
+                color: #858585;
+            }
+        }
+    }
+
+    .info-product {
+        height: 100%;
+        margin: 0px 20px;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        display: flex;
+
+        img {
+            width: 80px;
+            height: 80px;
+            padding: 10px;
+            border: 1px solid #e1e1e1;
+            object-fit: cover;
+        }
+
+        .info {
+            width: 60%;
+            margin: 10px 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            margin-left: 12px;
+        }
+    }
+}

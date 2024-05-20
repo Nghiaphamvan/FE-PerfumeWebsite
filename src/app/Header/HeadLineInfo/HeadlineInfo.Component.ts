@@ -1,4 +1,6 @@
 import { Component } from "@angular/core";
+import { Router } from "@angular/router";
+import { DataService } from "../../Service/share-data-component.service";
 
 @Component({
 
@@ -7,5 +9,8 @@ import { Component } from "@angular/core";
 })
 
 export class HeadLineInfo{
-
+    constructor(private route: Router, private dataService: DataService){}
+    redirectToUser() {
+        this.route.navigate(['/user']);
+    }
 }

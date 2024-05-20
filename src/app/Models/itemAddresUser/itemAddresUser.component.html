@@ -1,0 +1,41 @@
+<div class="wrap">
+    <ng-container *ngIf="!clickedEditAddress; else edit;">
+        <div class="headline">
+            <div style="display: flex;">
+                <p style="border-right: 1px solid #dbdbdb;
+                padding-right: 12px; margin-right: 12px;
+                font-size: 16px;">Vanhaste</p>
+                <p style="font-size: 16px;">0363106151</p>
+            </div>
+    
+            <div>
+                <p>Vinhomes Grand Park, S1003, Nguyễn Xiểng
+                    <br>
+                    Phường Long Bình, Thành Phố Thủ Đức, TP. Hồ Chí Minh</p>
+            </div>
+        </div>
+        <div class="right">
+            <p style="background-color: rgb(9, 131, 9); color: #fff;" (click)="Update()">Update</p>
+            <p style="background-color: #f4694b; color: #fff;">Delete</p>
+        </div>
+    </ng-container>
+        
+    <ng-template #edit>
+        <div class="edit-address">
+            <div style="margin-top: 8px;">
+                <input type="text" placeholder="First Name">
+                <input type="text" placeholder="Last Name">
+                <input type="text" placeholder="Phone number">
+            </div>
+            <div style="display: flex; align-items: center;">
+                <input style="width: 690px;
+                height: 30px;
+                margin-top: 12px;
+                padding-left: 12px;" type="text" placeholder="Address"> 
+                <p style="padding: 2px 8px; border: 1px solid #dbdbdb;
+                margin-bottom: 0; height: 30px; margin-top: 12px;
+                align-items: center; display: flex; cursor: pointer;" (click)="Update()">Save</p>
+            </div>
+        </div> 
+    </ng-template>
+</div>

@@ -1,8 +1,26 @@
-<!-- <div>
+<ng-container>
+    <div *ngIf="!login; else afterLogin" class="Authentication-Container">
+        <ng-container *ngIf="type=== 1; else ifSignUp;">
+            <signin (goToSignUp)="getDirect($event)"></signin>
+        </ng-container>
+
+        <ng-template #ifSignUp>
+            <ng-container *ngIf="type===2; else forgotpassword">
+                <sign-up (goToSignIn)="getDirect($event)"></sign-up>
+            </ng-container>
+        </ng-template>
+        
+        <ng-template #forgotpassword>
+            <forgot-passwod (Direct)="getDirect($event)"></forgot-passwod>
+        </ng-template> 
+    </div>
+</ng-container>
+
+<ng-template #afterLogin>
     <div style="
         position: fixed;
         top: 0; left: 0;
-        z-index: 9999;
+        z-index: 999;
         background-color: #fff;
         width: 100%;
         border-bottom: 1px solid #999494;
@@ -13,24 +31,10 @@
     </div>
     <div style="margin-top: 116px;">
         <router-outlet></router-outlet>
-
     </div> 
     <footer></footer> 
-</div> -->
+</ng-template> 
 
-<div class="Authentication-Container">
-    <ng-container *ngIf="type=== 1; else ifSignUp;">
-        <signin (goToSignUp)="getDirect($event)"></signin>
-    </ng-container>
+<full-screen></full-screen>
 
-    <ng-template #ifSignUp>
-        <ng-container *ngIf="type===2; else forgotpassword">
-            <sign-up (goToSignIn)="getDirect($event)"></sign-up>
-        </ng-container>
-    </ng-template>
-    
-    <ng-template #forgotpassword>
-        <forgot-passwod (Direct)="getDirect($event)"></forgot-passwod>
-    </ng-template> 
-  
-</div>
+

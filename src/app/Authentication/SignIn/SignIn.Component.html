@@ -1,0 +1,40 @@
+<div class="SignIn-Container">
+    <p class="SignIn-label">
+        Perfume Website
+    </p>
+    <div style="width: 85%;">
+        <div style="display: flex; align-items: center; justify-content: space-around; ">
+            <div class="vir-line" style="width: 50%; border: 1px solid #dbdbdb; height: 0px;"></div>
+            <div class="vir-line" style="width: 50%; border: 1px solid #dbdbdb; height: 0px;"></div>
+        </div>
+    </div>
+    <div style="display: flex; flex-direction: column; justify-content: space-evenly; flex: 1.2; width: 100%;">   
+        <input type="text" placeholder="Vanhastenghia@gmail.com" [(ngModel)]="email" class="SignIn-Input Email">
+        <div class="SignIn-Input-container">
+            <input type="password" [(ngModel)]="password" (ngModelChange)="onInputChange($event)" placeholder="Password" class="SignIn-Input Password">
+            <span *ngIf="password.trim()!==''" 
+                [ngClass]="passwordValid() ? 'correct-color' : 'incorrect-color'" 
+                class="material-symbols-outlined" 
+            >
+                {{checkValidPassword}}
+            </span>
+        </div>
+        <button (click)="activeSignIn()" class="SignIn-Btn">Sign in</button>
+    </div>
+    <div style="flex: 0.5; width: 80%; margin-top: 20px;">  
+        <div style="display: flex; align-items: center; justify-content: space-evenly; ">
+            <div class="vir-line" style="width: 45%; border: 1px solid #dbdbdb; height: 0px;"></div>
+            <p style="margin: 0px 8px;">Or</p>
+            <div class="vir-line" style="width: 45%; border: 1px solid #dbdbdb; height: 0px;"></div>
+        </div>
+        <p style="margin-top: 12px; text-align: center; cursor: pointer; color: #000;" (click)="directComponent(3)">
+            Forgot password?
+        </p>
+    </div>
+    
+</div>
+
+<div class="SignUp-Container">
+    <p>Bạn chưa có tài khoản ư?</p>
+    <p style="color: blue; cursor: pointer;" (click)="directComponent(2)">Đăng ký</p>
+</div>

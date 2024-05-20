@@ -1,0 +1,62 @@
+<div class="SignIn-Container">
+    <p class="SignIn-label">
+        Perfume Website
+    </p>
+    <div style="width: 85%;">
+        <div style="display: flex; align-items: center; justify-content: space-around; ">
+            <div class="vir-line" style="width: 50%; border: 1px solid #dbdbdb; height: 0px;"></div>
+            <div class="vir-line" style="width: 50%; border: 1px solid #dbdbdb; height: 0px;"></div>
+        </div>
+    </div>
+    <div style="display: flex; flex-direction: column; justify-content: space-around; flex: 1.2; width: 100%;"> 
+        <div class="SignIn-Input-container" style="margin-bottom: 12px;">
+            <input type="text" placeholder="Email"
+            (ngModelChange)="onInputEmail($event)"
+            [(ngModel)]="Email" class="Input Password">
+            <span *ngIf="Email.trim()!==''" 
+                [ngClass]="validEmail ? 'correct-color' : 'incorrect-color'" 
+                class="material-symbols-outlined" 
+            >
+                {{checkvalidEmail}}
+            </span>
+        </div>  
+        <!-- <input type="text" [(ngModel)]="Email" placeholder="Email" class="SignIn-Input Email"> -->
+        <div style="width: 85%; margin: auto; display: flex; justify-content: space-between;">
+            <input type="text" [(ngModel)]="FirstName" style="margin-right: 4px;" placeholder="First name" class="SignIn-Input Email">
+            <input type="text" [(ngModel)]="LastName" placeholder="Last name" class="SignIn-Input Email">
+        </div>
+        <div >
+            <p style="width: 85%; font-size: 8px; margin: auto; color: #000;">Mật khẩu phải gồm có chữ in hoa, chữ in thường, ký tự đặc biệt, chữ số</p>
+            <div class="SignIn-Input-container" style="margin-bottom: 12px;">
+            
+                <input type="password" placeholder="Password" 
+                (ngModelChange)="onInputChange($event)"
+                [(ngModel)]="password" class="Input Password">
+                <span *ngIf="password.trim()!==''" 
+                    [ngClass]="passwordValid() ? 'correct-color' : 'incorrect-color'" 
+                    class="material-symbols-outlined" 
+                >
+                    {{checkValidPassword}}
+                </span>
+            </div>
+        </div>
+        <div class="SignIn-Input-container">
+            <input type="password" 
+            [(ngModel)]="confirmPassword" 
+            (ngModelChange)="onInputChangeCf($event)"
+            placeholder="Confirm password" class="Input Password">
+            <span *ngIf="confirmPassword.trim()!==''" 
+                [ngClass]="confirmPasswordValid() ? 'correct-color' : 'incorrect-color'" 
+                class="material-symbols-outlined" 
+            >
+                {{checkvalidConfirmPassword}}
+            </span>
+        </div>
+        <button (click)="ActiveSignUp()"  [ngClass]="{'validBtn-Singup': validBtnSignUp, 'invalidBtn-Singup': !validBtnSignUp}" class="SignIn-Btn">Sign Up  </button>
+    </div>
+</div>
+
+<div class="SignUp-Container">
+    <p>Bạn đã có tài khoản ư?</p>
+    <p style="cursor: pointer; color: blue;" (click)="directSignIn(1)">Đăng nhập</p>
+</div>

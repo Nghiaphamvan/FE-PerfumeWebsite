@@ -12,6 +12,9 @@ export class DataService {
   private brandNameFromBrandPage: string ='';
   private SearchText: string = '';
   public Carts!: CartType[];
+  
+  private responseToken : boolean = false;
+
   private userInfo: UserType = {
     id: 1
   };
@@ -20,6 +23,14 @@ export class DataService {
 
 
   SearchCallFunction =  this.searchSubject.asObservable();
+
+  setResponseToken(value : boolean) {
+    this.responseToken = value;
+  }
+
+  getResponseToken() {
+    return this.responseToken;
+  }
 
   setProductAddedToCart(carts: CartType[]) {
     this.Carts = carts;

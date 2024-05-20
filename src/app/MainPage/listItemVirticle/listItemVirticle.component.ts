@@ -1,7 +1,9 @@
-import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { Component, Input, Output, ViewEncapsulation } from '@angular/core';
 import SwiperCore, {Navigation, Pagination, EffectCoverflow } from 'swiper';
 import { MyService } from "../../Service/my-services.service";
 import { error } from "console";
+import { Subject } from 'rxjs';
+import { fullScreenService } from '../../Service/fullscreenServices';
 
 SwiperCore.use([Navigation, Pagination, EffectCoverflow]);
 
@@ -14,30 +16,47 @@ SwiperCore.use([Navigation, Pagination, EffectCoverflow]);
 
 export class listItemVirticle {
 
-  constructor(private myService : MyService){}
+  constructor(private myService : MyService, private fss: fullScreenService){}
+
+  private detailproduct = new Subject<number>();
+  @Output() variableChanged = this.detailproduct.asObservable();
 
   title = 'carousel';
   @Input() Text = '';
   @Input() amountProduct = 0;
   @Input() nameCampaign = '';
   @Input() typeProduct = '';
+  @Input() idProduct = -1;
   myArray: any[] = [];
 
-  ngOnInit(){
-    this.myService.getSomeData(this.amountProduct).subscribe(data => {
-      console.log("success");
-      this.myArray = data;
-      console.log(this.myArray);
-    }, error => {
-      console.log(error);
-    })
-  }
-  
   hoveredIndex: number | null = null;
 
   divOpacity: number = 1;
   divDisplay: string = "none";
   selectedIndex = 0;
+
+  iconNames: { [key: number]: string } = {};
+  
+  
+  passIdProduct(v:number) {
+    this.fss.openDetail(v);
+  }
+
+  ngOnInit(){
+    this.myService.getSomeData(this.amountProduct).subscribe(data => {
+      this.myArray = data;
+    }, error => {
+      console.log(error);
+    })
+  }
+  
+  AddToCartAtMainPage(v: number) {
+    this.iconNames[v] = 'check_circle';
+    setTimeout(()=>{
+      this.iconNames[v] = 'shopping_bag';
+    }, 2000);
+  }
+
 
   onMouseEnter(index:number){
     this.hoveredIndex = index;
@@ -47,5 +66,11 @@ export class listItemVirticle {
     if (this.hoveredIndex === index) {
       this.hoveredIndex = null;
     }
+  }
+
+
+
+  seeDetail(v:number) {
+    console.log(v);
   }
 }

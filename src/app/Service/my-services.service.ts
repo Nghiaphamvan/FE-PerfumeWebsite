@@ -1,10 +1,12 @@
 // my-service.service.ts hoặc my-component.component.ts
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { error } from 'node:console';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { CartType } from '../../DataType/CartType';
+import { response } from 'express';
+import { stat } from 'node:fs';
 
 export class Product {
   name: string ="";
@@ -33,6 +35,7 @@ export class MyService {
         console.log(error);
     });
   }
+  
 
   getProductSale() {
     return this.http.get<any>(this.apiUrl + 'GetProductSale');
@@ -45,7 +48,6 @@ export class MyService {
 
   getProductByCategory(name: string){ 
     const encodedInput: string = encodeURIComponent(name);
-    // https://localhost:7164/api/Product/GetProductByCategory?name=NICHE%20PERFUME'  
     return this.http.get<any>(this.apiUrl + `GetProductByCategory?name=${encodedInput}`);
   }
 
@@ -54,10 +56,7 @@ export class MyService {
   }
 
   getSomeData(productId: number): Observable<any> {
-    // Chuyển đổi tham số productId thành một chuỗi
     const productIdString: string = productId.toString();
-
-    // Truyền tham số productId trong URL của yêu cầu GET
     return this.http.get<any>(this.apiUrl + `GetSomeProduct?n=${productIdString}`);
   }
 
@@ -122,7 +121,6 @@ export class MyService {
 
 
   DeleteCart(CartID: number) {
-    // https://localhost:7164/api/Product/DeleteCart?id=1060
     const Ca = CartID.toString();
     return this.http.delete<any>(this.apiUrl + `DeleteCart?id=${Ca}`).subscribe(
       (re)=> {
@@ -131,11 +129,6 @@ export class MyService {
         console.log(er);
       }
     );
-  }
-
-  GetAllCartsByCustomerID(CustomerId: number) {
-    const id : string = CustomerId.toString();
-    return this.http.get<any>(this.apiUrl + `GetCartsByCustomerID?customerID=${id}`);
   }
 
   getProductByID(ProductID:number) {
@@ -148,7 +141,32 @@ export class MyService {
     return this.http.post<any>('https://localhost:7164/api/Account/SignUp', body);
   }
 
+  SignIn(Email: string, Password: string): Observable<any> {
+    const body = {Email: Email, Password: Password};
+    return this.http.post<any>('https://localhost:7164/api/Account/SignIn', body);
+  }
+
   checkMail(email: string) {
-      return this.http.get<any>(`https://localhost:7164/api/Account/checkEmail?email=${email}`);
+    return this.http.get<any>(`https://localhost:7164/api/Account/checkEmail?email=${email}`);
+  }
+
+  validToken(): Observable<HttpResponse<any>> {
+    return this.http.get<any>('https://localhost:7164/api/Product/ValidToken', { observe: 'response' })
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  getDetailCustomerByEmail(email : string) {
+    return this.http.get<any>(`https://localhost:7164/api/Account/GetDetailCustomerByEmail?email=${email}`);
+  }
+
+  private handleError(error: HttpErrorResponse): Observable<never> {
+    if (error.status === 401) {
+      console.log('Unauthorized request (401)');
+    } else {
+      console.error('An error occurred:', error);
+    }
+    return throwError(error);
   }
 }
