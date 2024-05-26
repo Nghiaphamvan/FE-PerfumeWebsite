@@ -4,6 +4,7 @@ import { MyService } from "../../Service/my-services.service";
 import { error } from "console";
 import { Subject } from 'rxjs';
 import { fullScreenService } from '../../Service/fullscreenServices';
+import { DataService } from '../../Service/share-data-component.service';
 
 SwiperCore.use([Navigation, Pagination, EffectCoverflow]);
 
@@ -16,7 +17,11 @@ SwiperCore.use([Navigation, Pagination, EffectCoverflow]);
 
 export class listItemVirticle {
 
-  constructor(private myService : MyService, private fss: fullScreenService){}
+  constructor(
+    private myService : MyService,
+    private fss: fullScreenService,
+    private datashare: DataService
+  ){}
 
   private detailproduct = new Subject<number>();
   @Output() variableChanged = this.detailproduct.asObservable();
@@ -50,11 +55,13 @@ export class listItemVirticle {
     })
   }
   
-  AddToCartAtMainPage(v: number) {
+  AddToCartAtMainPage(v: number, image: any) {
     this.iconNames[v] = 'check_circle';
     setTimeout(()=>{
       this.iconNames[v] = 'shopping_bag';
     }, 2000);
+    const user = this.datashare.getUserInfo();
+    this.myService.AddProductToCart(user.email, image.id);
   }
 
 

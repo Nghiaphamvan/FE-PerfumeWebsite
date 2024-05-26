@@ -9,7 +9,9 @@ import { Router } from "@angular/router";
     encapsulation: ViewEncapsulation.None
 }) export class UserComponent {
     userInfo: UserType = {  
-        id: 1
+        email: "",
+        firstName: "",
+        lastName: "",
     };
 
     constructor(private route: Router) {}

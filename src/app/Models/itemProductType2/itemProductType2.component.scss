@@ -11,12 +11,29 @@ p {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    position: relative;
 
     img {
         width: 180px;
         height: 180px;
         object-fit: contain;
         margin-top: 4px;
+    }
+
+    .icon-img {
+        position: absolute;
+        width: 50%;
+        height: 20%;
+        justify-content: space-around;
+        align-items: center;
+        background-color: rgba(255, 255, 255, 0.7);
+        top: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .content {
@@ -92,4 +109,12 @@ p {
     border-radius: 4px;
     margin-top: 20px;
     margin-left: 12px;
+}
+
+.hide-icon {
+    display: none !important;
+}
+
+.color-cart {
+    color:  rgb(6, 99, 6) !important;
 }

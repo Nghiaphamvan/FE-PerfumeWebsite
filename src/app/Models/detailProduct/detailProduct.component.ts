@@ -3,6 +3,7 @@ import { ProductType } from "../../../DataType/ProductType";
 import { fullScreenService } from "../../Service/fullscreenServices";
 import { MyService } from "../../Service/my-services.service";
 import { Subscription } from "rxjs";
+import { DataService } from "../../Service/share-data-component.service";
 
 
 @Component({
@@ -37,7 +38,7 @@ import { Subscription } from "rxjs";
     volumeProduct: ProductType[] = [];
     salePercent: number = 0;
     
-    constructor(private dff:fullScreenService, private myservice: MyService) {}
+    constructor(private dff:fullScreenService, private myservice: MyService, private datashare: DataService) {}
 
     ngOnInit() {
         this.GetDatabyId(this.idProduct);
@@ -99,6 +100,8 @@ import { Subscription } from "rxjs";
 
     addToCart() {
         console.log(this.quantity);
+        const user = this.datashare.getUserInfo();
+        this.myservice.AddProductToCart(user.email, this.CurrentProduct.id);
     }
 
     changeQuantity(v : number) {

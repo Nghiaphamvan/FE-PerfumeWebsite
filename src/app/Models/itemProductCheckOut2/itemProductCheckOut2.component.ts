@@ -45,8 +45,15 @@ import { processCheckOutType } from "../../../DataType/ProductType";
     }
 
     Update(id:number, re: number) {
-        const body: processCheckOutType = {idProduct: id, respon: re};
-        this.UpdateQuatity.emit(body);
+        if(re === -1) {
+            if(this.CartDetail.Quantity > 0) {
+                const body: processCheckOutType = {idProduct: id, respon: re};
+                this.UpdateQuatity.emit(body);
+            }
+        } else {
+            const body: processCheckOutType = {idProduct: id, respon: re};
+            this.UpdateQuatity.emit(body);
+        }
     }
 
     getProduct() {

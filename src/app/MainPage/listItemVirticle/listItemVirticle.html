@@ -32,12 +32,11 @@
           <img class="Image-product"
           [class.Image-product-hover]="hoveredIndex === i"
           [src]="image.url" alt="#">
-
           <div
           [class.cover-product-hover]="hoveredIndex === i"
                 class="cover-product">
             <mat-icon style="cursor: pointer;">
-              <span (click)="AddToCartAtMainPage(i)" [ngClass]="{'clicked': iconNames[i]==='check_circle'}" class="material-symbols-outlined">
+              <span (click)="AddToCartAtMainPage(i, image)" [ngClass]="{'clicked': iconNames[i]==='check_circle'}" class="material-symbols-outlined">
                 {{ iconNames[i] || 'shopping_bag' }}
               </span>
             </mat-icon>

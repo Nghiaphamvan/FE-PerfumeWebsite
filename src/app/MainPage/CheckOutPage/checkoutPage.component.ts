@@ -3,7 +3,7 @@ import { MyService } from "../../Service/my-services.service";
 import { UserType } from "../../../DataType/UserType";
 import { DataService } from "../../Service/share-data-component.service";
 import { CartType } from "../../../DataType/CartType";
-import { Observable } from "rxjs";
+import { Observable, Subscription } from "rxjs";
 import { processCheckOutType } from "../../../DataType/ProductType";
 import { MatDialog } from '@angular/material/dialog';
 import { DialogService } from "../../Models/Alert/alert-service";
@@ -24,25 +24,37 @@ export interface PassData {
     UserInfo: UserType = this.dataService.getUserInfo();
     total:number = 0;
     selectedValue:string = "1";
+    
+    onGetEmailSubt: Subscription;
 
     clickIconDelivery: boolean[] = [true, false, false, false];
 
     checkoutclicked:boolean = false;
-
-    @ViewChild('divcontainerall') scrollContainer!: ElementRef;
-    
-
-    constructor(private myServer: MyService, private dataService: DataService){
-        this.getCarts();
-        this.Carts = [];
-        this.cartsCheckedCheckout = [];
-    }
     Carts!: CartType[];
     cartsCheckedCheckout!:CartType[];
 
     CartsChecked: PassData[] = [];
 
+    @ViewChild('divcontainerall') scrollContainer!: ElementRef;
+    
 
+    constructor(private myServer: MyService, private dataService: DataService){
+        this.Carts = [];
+        this.cartsCheckedCheckout = [];
+        this.onGetEmailSubt = this.dataService.onGetEmailSubject().subscribe(data => {
+            this.getCarts();
+        })
+    }
+    private getCarts() {
+        const user = this.dataService.getUserInfo();
+        console.log(user);
+
+        this.getData(this.myServer.getAllCartsByEmail(user.email), response => {
+            this.Carts = response;
+            console.log(this.Carts);
+        })
+    }
+    
     private getData(serviceCall: Observable<any>, callback?: (data: any) => void): void {
         serviceCall.subscribe(data => {
             if (callback) {
@@ -153,14 +165,8 @@ export interface PassData {
         this.Checkout = 0;
         this.total = 0;
         this.CartsChecked = [];
-        this.CartsChecked = [];
+        this.cartsCheckedCheckout = [];
 
-    }
-
-    private getCarts() {
-        // this.getData(this.myServer.GetAllCartsByCustomerID(this.UserInfo.id), data => {
-        //     this.Carts = data;
-        // })
     }
 
     filterCartChecked() {

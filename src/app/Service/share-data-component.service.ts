@@ -1,7 +1,7 @@
 // data.service.ts
 import { Injectable } from '@angular/core';
 import { ProductType } from '../../DataType/ProductType';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { UserType } from '../../DataType/UserType';
 import { CartType } from '../../DataType/CartType';
 
@@ -16,13 +16,20 @@ export class DataService {
   private responseToken : boolean = false;
 
   private userInfo: UserType = {
-    id: 1
+    email: "",
+    firstName: "",
+    lastName: ""
   };
 
   private searchSubject = new Subject<void>();
 
+  private getEmailSubject = new Subject<any>();
 
   SearchCallFunction =  this.searchSubject.asObservable();
+
+  onGetEmailSubject(): Observable<any> {
+    return this.getEmailSubject.asObservable();
+  }
 
   setResponseToken(value : boolean) {
     this.responseToken = value;
@@ -69,6 +76,7 @@ export class DataService {
 
   setUserInfo(userInfo: UserType) {
     this.userInfo = userInfo;
+    this.getEmailSubject.next(this.userInfo);
   }
 
   getUserInfo() {

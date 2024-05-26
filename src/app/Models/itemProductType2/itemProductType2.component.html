@@ -1,6 +1,17 @@
-<div class="container">
-    <div>
-        <img src="{{Product.url}}" alt="#">
+<div class="container" >
+    <div style="position: relative;"   (mouseleave)="onMouseLeave()">
+        <img src="{{Product.url}}" alt="#" 
+        (mouseenter)="onMouseEnter()"
+        >
+        <div class="icon-img" [ngClass]="{'hide-icon': onMouse}">
+            <mat-icon (click)="AddToCartAtMainPage(Product)" style="cursor: pointer; border-right: 1px solid #000; margin-right: 8px; padding-right: 8px;">
+                <span [ngClass]="{'color-cart': onClickAddCart==='check_circle'}" class="material-symbols-outlined">{{onClickAddCart}}</span>
+            </mat-icon>
+              
+            <mat-icon style="cursor: pointer;" (click)="passIdProduct(Product.id)">
+                <span class="material-symbols-outlined">visibility</span>
+            </mat-icon>
+        </div>
     </div>
     <div class="content">
         <div style="display: flex;">
@@ -19,7 +30,6 @@
         </div>
 
         <div class="btn">
-            <button style="height: 30px; margin-right: 12px;" mat-stroked-button>Buy</button>
             <button (click)="ActiveaddProductToCart()" style="scale: 0.7;" mat-mini-fab matTooltip="Primary" color="primary" aria-label="Example mini fab with a heart icon">
                 <mat-icon>favorite</mat-icon>
             </button>

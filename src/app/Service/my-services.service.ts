@@ -74,21 +74,21 @@ export class MyService {
     return this.http.post<any>(this.apiUrl + 'addNewPerfume', newProduct, { headers: headers });
   }
 
-  addProductToCartMethod(CustomerID: number, ProductID: number): Observable<any> {
-    const body = { customerId: CustomerID, productId: ProductID };
-    return this.http.post<any>(this.apiUrl + 'AddProductToCart', body);
+  addProductToCartMethod(email: string, ProductID: number): Observable<any> {
+    const body = { email: email, productId: ProductID };
+    return this.http.post<any>('https://localhost:7164/api/Product/AddProductToCart', body);
   }
   
 
-  AddProductToCart(CustomerId : number,  ProductId: number) {
-    this.addProductToCartMethod(CustomerId, ProductId).subscribe(
+  AddProductToCart(email : string,  ProductId: number) {
+    this.addProductToCartMethod(email, ProductId).subscribe(
       (response) => {
           console.log('Success:', response);
       },
       (error) => {
           console.error('Error:', error);
       }
-  );
+    );
   }
 
   UpdateCart(ProductID: number, Response: string) {
@@ -159,6 +159,10 @@ export class MyService {
 
   getDetailCustomerByEmail(email : string) {
     return this.http.get<any>(`https://localhost:7164/api/Account/GetDetailCustomerByEmail?email=${email}`);
+  }
+
+  getAllCartsByEmail(email: string) {
+    return this.http.get<any>(`https://localhost:7164/api/Product/getAllCartsByEmail?email=${email}`);
   }
 
   private handleError(error: HttpErrorResponse): Observable<never> {

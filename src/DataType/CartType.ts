@@ -1,7 +1,7 @@
 export interface CartType {
     CartID: number;
     PerfumeDetailID: number;
-    CustomerID: number;
+    Email: string;
     Quantity: number;
     CreatedAt: Date;
 }
